@@ -9,5 +9,6 @@ void main()
         read_keyboard();
         init_gdt();
         init_32bit_paging();
+        __asm__("mov esp, 0x20000000");
         while(1);
 }
