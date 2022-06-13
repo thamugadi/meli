@@ -1,3 +1,5 @@
+RAM=1G
+
 mel.elf : main.o print.o gdt.o keyboard.o paging.o gdt_s.elf keyboard_s.elf paging_s.elf linker.ld boot.elf
 	ld -m elf_i386 -T linker.ld main.o boot.elf print.o paging.o gdt.o keyboard.o gdt_s.elf keyboard_s.elf paging_s.elf -o mel.elf
 %.o : %.c
@@ -13,8 +15,12 @@ boot.elf : boot.s
 clean: 
 	rm *.o *.elf 
 run:
-	qemu-system-i386 -m 1G -kernel mel.elf
+	qemu-system-i386 -m $(RAM) -kernel mel.elf
 debug:
-	qemu-system-i386 -m 1G -kernel mel.elf -d in_asm
+	qemu-system-i386 -m $(RAM) -kernel mel.elf -d in_asm
 debug_cpu:
-	qemu-system-i386 -m 1G -kernel mel.elf -d cpu
+	qemu-system-i386 -m $(RAM) -kernel mel.elf -d cpu
+gdb:
+	qemu-system-i386 -m $(RAM) -s -S -kernel mel.elf
+all:
+	make clean && make && make run
