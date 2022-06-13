@@ -1,4 +1,3 @@
-extern void init_gdt();
 void main()
 {
         free_vram();
