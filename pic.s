@@ -1,5 +1,6 @@
 .intel_syntax noprefix
 .global init_pic
+.global end_interrupt
 
 .macro init_master icw4_needed cascade call_addr_interval8 level_triggered
 mov al, (\icw4_needed | (\cascade<<1) | (\call_addr_interval8<<2) | (\level_triggered<<3) | (1<<4))
@@ -32,5 +33,18 @@ call print
 sti
 leave
 ret
+
+end_interrupt:
+push ebp
+mov ebp, esp
+mov al, 0x20
+cmp byte ptr [esp+4], 8
+jle ms
+out 0xA0, al
+ms:
+out 0x20, al 
+leave
+ret
+
 text:
 .asciz "Initialized PIC.\n"
