@@ -7,8 +7,10 @@ void main()
         print("Press any key to continue.\n\n", 13);
         
         read_keyboard();
+
         init_gdt();
         init_32bit_paging();
-        __asm__("mov esp, 0x20000000");
+	init_idt();
+	init_pic();
         while(1);
 }

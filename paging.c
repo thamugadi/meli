@@ -15,9 +15,9 @@ void map_table(unsigned int paddr, unsigned int vaddr, int flags)
         {
                 page_tables[current_d][directory_e][i] = ((page*1024 + i)*0x1000) | flags;
         }
-        page_directories[current_d][directory_e] = (unsigned int)page_tables[current_d][directory_e] | flags;
+        page_directories[current_d][directory_e] =
+		(unsigned int)page_tables[current_d][directory_e] | flags;
 }
-
 
 void map_tables(unsigned int paddr, unsigned int vaddr, int flags, int n)
 {
