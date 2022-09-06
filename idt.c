@@ -21,7 +21,10 @@ struct IDT_PTR
 	struct IDT* idt_addr;  // base address of the first IDT segment
 } __attribute__((packed));
 
-void exception(){}
+void exception(){
+	print("An exception has occured.", 12);
+	while(1);
+}
 
 void isr0() {irq_handler(0); }
 void isr1() {irq_handler(1); }
