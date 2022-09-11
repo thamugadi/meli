@@ -4,8 +4,8 @@ mel.elf : main.o kprint.o gdt.o idt.o keyboard.o paging.o gdt_s.elf idt_s.elf ir
 	ld -m elf_i386 -T linker.ld main.o boot.elf kprint.o paging.o idt.o gdt.o keyboard.o gdt_s.elf idt_s.elf irq.elf pic.elf ring3.elf keyboard_s.elf paging_s.elf -o mel.elf
 main.o : main.c
 	gcc -c -w -m32 -masm=intel main.c
-kprint.o : kprint.c
-	gcc -c -w -m32 -masm=intel kprint.c
+kprint.o : lib/kprint.c
+	gcc -c -w -m32 -masm=intel lib/kprint.c
 gdt.o : gdt/gdt.c
 	gcc -c -w -m32 -masm=intel gdt/gdt.c
 idt.o : idt/idt.c
