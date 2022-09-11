@@ -1,10 +1,10 @@
 void main()
 {
         free_vram();
-        nextpage();
+        knextpage();
 
-        print("Mel.\n", 10);
-        print("Press any key to continue.\n\n", 13);
+        kprint("Mel.\n", 10);
+        kprint("Press any key to continue.\n\n", 13);
         
         read_keyboard();
 

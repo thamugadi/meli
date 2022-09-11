@@ -29,7 +29,7 @@ remap_master_irq 0x20
 remap_slave_irq 0x28
 push 15
 push offset text
-call print
+call kprint
 sti
 leave
 ret

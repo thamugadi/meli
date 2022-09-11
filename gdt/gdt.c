@@ -40,5 +40,5 @@ void init_gdt()
         gdt_ptr.gdt_size = sizeof(gdt) - 1;
         gdt_ptr.gdt_addr = (struct GDT*)&gdt;
         load_gdt((struct GDT*)&gdt_ptr);
-        print("Loaded GDT.\n", 15);
+        kprint("Loaded GDT.\n", 15);
 }

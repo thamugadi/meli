@@ -40,10 +40,10 @@ void map_kernel_tables(unsigned int paddr, unsigned int vaddr, int n)
 void init_32bit_paging()
 {
         map_kernel_tables(0, 0, 128);
-        print("Mapped 128 tables for kernel mode.\n", 15);
+        kprint("Mapped 128 tables for kernel mode.\n", 15);
         map_user_tables(0x400000*128, 0x400000*128, 128);
-        print("Mapped 128 tables for user mode.\n", 15);
+        kprint("Mapped 128 tables for user mode.\n", 15);
         set_32bit_cr3(page_directories[current_d]);
         enable_32bit_paging();
-        print("Enabled paging.\n", 15);
+        kprint("Enabled paging.\n", 15);
 }

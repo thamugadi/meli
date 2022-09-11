@@ -6,7 +6,7 @@ char *video_ram = (char*)0xB8000;
 int screen_count = SCREEN_LINES;
 int line_count = LINE_SIZE;
 
-void print(char *text, char color)
+void kprint(char *text, char color)
 {
         while (*text)
         {
@@ -46,19 +46,19 @@ void print(char *text, char color)
         }
 }
 
-void backline (void)
+void kbackline (void)
 {
         video_ram += line_count*2+1;
         line_count = LINE_SIZE;
         screen_count--;
 }
 
-void nextpage()
+void knextpage()
 {
         int l = 0;
         while (l < SCREEN_LINES)
         {
-                print("\n", 0);
+                kprint("\n", 0);
                 l++;
         }
 }

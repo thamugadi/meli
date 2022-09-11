@@ -22,7 +22,7 @@ struct IDT_PTR
 } __attribute__((packed));
 
 void exception(){
-	print("An exception has occured.", 12);
+	kprint("An exception has occured.", 12);
 	while(1);
 }
 
@@ -73,6 +73,6 @@ void init_idt()
         idt_ptr.idt_size = sizeof(idt) - 1;
         idt_ptr.idt_addr = (struct IDT*)&idt;
         load_idt((struct IDT*)&idt_ptr);
-        print("Loaded IDT.\n", 15);
+        kprint("Loaded IDT.\n", 15);
 
 }
