@@ -7,4 +7,4 @@ push offset text
 call kprint
 jmp $
 text:
-.asciz "TODO: irq handler"
+.asciz "Interrupt request.\nTODO: irq handler"

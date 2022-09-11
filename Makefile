@@ -1,7 +1,7 @@
 RAM=1G
 
-mel.elf : main.o kprint.o gdt.o idt.o keyboard.o paging.o gdt_s.elf idt_s.elf irq.elf ring3.elf keyboard_s.elf paging_s.elf pic.elf linker.ld boot.elf
-	ld -m elf_i386 -T linker.ld main.o boot.elf kprint.o paging.o idt.o gdt.o keyboard.o gdt_s.elf idt_s.elf irq.elf pic.elf ring3.elf keyboard_s.elf paging_s.elf -o mel.elf
+mel.elf : main.o kprint.o gdt.o idt.o keyboard.o paging.o gdt_s.elf idt_s.elf irq.elf exceptions.elf ring3.elf keyboard_s.elf paging_s.elf pic.elf linker.ld boot.elf
+	ld -m elf_i386 -T linker.ld main.o boot.elf kprint.o paging.o idt.o gdt.o keyboard.o gdt_s.elf idt_s.elf irq.elf pic.elf exceptions.elf ring3.elf keyboard_s.elf paging_s.elf -o mel.elf
 main.o : main.c
 	gcc -c -w -m32 -masm=intel main.c
 kprint.o : lib/kprint.c
@@ -20,10 +20,12 @@ keyboard_s.elf : keyboard/keyboard.s
 	as --32 keyboard/keyboard.s -o keyboard_s.elf
 ring3.elf : usermode/ring3.s
 	as --32 usermode/ring3.s -o ring3.elf
-pic.elf : PIC/pic.s
-	as --32 PIC/pic.s -o pic.elf
-irq.elf : interrupts/irq.s
-	as --32 interrupts/irq.s -o irq.elf
+pic.elf : 8259_PIC/pic.s
+	as --32 8259_PIC/pic.s -o pic.elf
+irq.elf : interrupts/irq/irq.s
+	as --32 interrupts/irq/irq.s -o irq.elf
+exceptions.elf : interrupts/exceptions/exceptions.s
+	as --32 interrupts/exceptions/exceptions.s -o exceptions.elf
 idt_s.elf: idt/idt.s
 	as --32 idt/idt.s -o idt_s.elf
 gdt_s.elf : gdt/gdt.s
