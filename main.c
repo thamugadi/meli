@@ -12,8 +12,7 @@ void main()
         init_32bit_paging();
 	init_idt();
 
-	//init_pic();
-	int i = 1/0;
+	init_pic();
 
 
         while(1);
