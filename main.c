@@ -13,7 +13,5 @@ void main()
 	init_idt();
 
 	init_pic();
-
-
         while(1);
 }

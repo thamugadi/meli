@@ -1,9 +1,11 @@
 RAM=1G
 
-mel.elf : main.o kprint.o gdt.o idt.o keyboard.o paging.o gdt_s.elf idt_s.elf irq.elf exceptions.elf ring3.elf keyboard_s.elf paging_s.elf pic.elf linker.ld boot.elf
-	ld -m elf_i386 -T linker.ld main.o boot.elf kprint.o paging.o idt.o gdt.o keyboard.o gdt_s.elf idt_s.elf irq.elf pic.elf exceptions.elf ring3.elf keyboard_s.elf paging_s.elf -o mel.elf
+mel.elf : main.o kprint.o lib.o gdt.o idt.o keyboard.o paging.o gdt_s.elf idt_s.elf irq.elf exceptions.elf ring3.elf keyboard_s.elf paging_s.elf pic.elf linker.ld boot.elf
+	ld -m elf_i386 -T linker.ld main.o boot.elf kprint.o lib.o paging.o idt.o gdt.o keyboard.o gdt_s.elf idt_s.elf irq.elf pic.elf exceptions.elf ring3.elf keyboard_s.elf paging_s.elf -o mel.elf
 main.o : main.c
 	gcc -c -w -m32 -masm=intel main.c
+lib.o : lib/lib.c
+	gcc -c -w -m32 -masm=intel lib/lib.c
 kprint.o : lib/kprint.c
 	gcc -c -w -m32 -masm=intel lib/kprint.c
 gdt.o : gdt/gdt.c
