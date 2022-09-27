@@ -20,6 +20,8 @@ void itoa(int i, char* addr)
         int m = 10; 
         int c = 0;
         do addr[c++] = "0123456789"[(j%((m*=10)/10)) / (m/100)]; while (i/=10);
+	addr[c++]=0;
+	reverse(addr);
 }
 
 void memset(void* addr, int c, int n) {

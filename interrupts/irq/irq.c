@@ -1,5 +1,9 @@
 void irq_handler(int irq)
 {
-	kprint("IRQ", 12);
+	char buf[4];
+	itoa(irq, buf);
+	kprint("IRQ ", 14);
+	kprint(buf, 14);
+	kprint("\n", 14);
 	while(1);
 }

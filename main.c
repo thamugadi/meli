@@ -13,6 +13,5 @@ void main()
 	init_idt();
 
 	init_pic();
-	int a= 1/0;
         while(1);
 }
