@@ -27,3 +27,19 @@ void memset(void* addr, int c, int n) {
 	while(n--) *ptr++ = c;
 }
 
+void strcpy(char* dest, char* src)
+{
+	while (*dest++ = *src++);
+}
+
+void memcpy(char* dest, char* src, int n)
+{
+	int i;
+	for (i = 0; i < n; i++) dest[i] = src[i];
+}
+
+int strcmp(char* s1, char* s2)
+{
+	while (*s1) while (*s1++ != *s2++);
+	return *s1 - *s2;
+}
