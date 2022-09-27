@@ -75,16 +75,16 @@ struct IDT idt[256];
 struct IDT_PTR idt_ptr;
 void init_idt()
 {
-	FILL_IDT_ENTRY(0x00,  (unsigned int)&ex0,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x01,  (unsigned int)&ex1,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x02,  (unsigned int)&ex2,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x03,  (unsigned int)&ex3,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x04,  (unsigned int)&ex4,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x05,  (unsigned int)&ex5,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x06,  (unsigned int)&ex6,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x07,  (unsigned int)&ex7,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x08,  (unsigned int)&ex8,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x09,  (unsigned int)&ex9,  0x8, 0x8E);
+	FILL_IDT_ENTRY(0x00,  (unsigned int)&ex0,   0x8, 0x8E);
+	FILL_IDT_ENTRY(0x01,  (unsigned int)&ex1,   0x8, 0x8E);
+	FILL_IDT_ENTRY(0x02,  (unsigned int)&ex2,   0x8, 0x8E);
+	FILL_IDT_ENTRY(0x03,  (unsigned int)&ex3,   0x8, 0x8E);
+	FILL_IDT_ENTRY(0x04,  (unsigned int)&ex4,   0x8, 0x8E);
+	FILL_IDT_ENTRY(0x05,  (unsigned int)&ex5,   0x8, 0x8E);
+	FILL_IDT_ENTRY(0x06,  (unsigned int)&ex6,   0x8, 0x8E);
+	FILL_IDT_ENTRY(0x07,  (unsigned int)&ex7,   0x8, 0x8E);
+	FILL_IDT_ENTRY(0x08,  (unsigned int)&ex8,   0x8, 0x8E);
+	FILL_IDT_ENTRY(0x09,  (unsigned int)&ex9,   0x8, 0x8E);
 	FILL_IDT_ENTRY(0x0A,  (unsigned int)&ex10,  0x8, 0x8E);
 	FILL_IDT_ENTRY(0x0B,  (unsigned int)&ex11,  0x8, 0x8E);
 	FILL_IDT_ENTRY(0x0C,  (unsigned int)&ex12,  0x8, 0x8E);

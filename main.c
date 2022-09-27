@@ -11,7 +11,8 @@ void main()
         init_gdt();
         init_32bit_paging();
 	init_idt();
-
 	init_pic();
-        while(1);
+	asm("cli");
+
+	while(1);
 }

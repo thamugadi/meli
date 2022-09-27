@@ -1,5 +1,6 @@
 void irq_handler(int irq)
 {
+	asm("pusha");
 	char buf[4];
 	itoa(irq, buf);
 	kprint("IRQ ", 14);
