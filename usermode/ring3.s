@@ -3,7 +3,8 @@
 .extern user_test
 
 set_usermode:
-mov ax, 0b00100011
+
+mov ax, 0x20 
 mov ds, ax
 mov es, ax 
 mov fs, ax 
