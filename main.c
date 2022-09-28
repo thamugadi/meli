@@ -14,5 +14,6 @@ void main()
 	init_pic();
 	asm("cli");
 
+	jump_usermode();
 	while(1);
 }
