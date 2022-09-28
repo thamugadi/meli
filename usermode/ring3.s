@@ -4,7 +4,7 @@
 
 set_usermode:
 
-mov ax, 0x20 
+mov ax, 0b00100011 
 mov ds, ax
 mov es, ax 
 mov fs, ax 
