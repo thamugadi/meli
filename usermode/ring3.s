@@ -15,5 +15,6 @@ push 0b00100011
 push eax 
 pushf 
 push 0b00011011
-push offset user_test 
+mov ebx, dword ptr [esp+0x14]
+push ebx
 iret

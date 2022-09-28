@@ -1,3 +1,4 @@
+extern void user_test(void) __attribute__((section(".ring3")));
 void main()
 {
         free_vram();
@@ -14,6 +15,6 @@ void main()
 	init_pic();
 	asm("cli");
 
-	set_usermode();
+	set_usermode(&user_test);
 	while(1);
 }
