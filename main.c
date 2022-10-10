@@ -13,7 +13,6 @@ void main()
         init_32bit_paging();
 	init_idt();
 	init_pic();
-	asm("cli");
 
 	set_usermode(&user_test);
 	while(1);

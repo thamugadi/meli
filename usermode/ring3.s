@@ -17,4 +17,5 @@ pushf
 push 0b00011011
 mov ebx, dword ptr [esp+0x14]
 push ebx
+jmp $ ##//to be done
 iret
