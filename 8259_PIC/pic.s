@@ -30,7 +30,6 @@ mov ebp, esp
 push 15
 push offset text
 call kprint
-sti
 leave
 ret
 
