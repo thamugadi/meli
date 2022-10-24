@@ -13,7 +13,10 @@ mov gs, ax
 mov eax, 0x30000000
 push 0b00100011
 push eax 
-pushf 
+pushf
+pop ebx
+##//or ebx, 0b1000000000 (to enable interrupts in usermode)
+push ebx
 push 0b00011011
 mov ebx, dword ptr [esp+0x14]
 push ebx
