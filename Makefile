@@ -45,6 +45,8 @@ debug:
 	qemu-system-i386 -m $(RAM) -kernel mel.elf -d in_asm
 debug_cpu:
 	qemu-system-i386 -m $(RAM) -kernel mel.elf -d cpu
+debug_int:
+	qemu-system-i386 -m $(RAM) -kernel mel.elf -d int -M smm=off 
 gdb:
 	qemu-system-i386 -m $(RAM) -s -S -kernel mel.elf
 all:

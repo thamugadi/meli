@@ -46,7 +46,7 @@ void init_gdt()
 
         memset(&tss, 0, 104);
 
-        FILL_GDT_ENTRY(5,104,(unsigned int)(&tss)&0xFFFF, ((unsigned int)(&tss)&0x00FF0000)>>16,0x89,0x10,((unsigned int)(&tss)&0xFF000000)>>24); //tss
+        FILL_GDT_ENTRY(5,104,(unsigned int)(&tss)&0xFFFF, ((unsigned int)(&tss)&0x00FF0000)>>16,0xE9,0x40,((unsigned int)(&tss)&0xFF000000)>>24); //tss
 
         gdt_ptr.gdt_size = sizeof(gdt) - 1;
         gdt_ptr.gdt_addr = (struct GDT*)&gdt;
