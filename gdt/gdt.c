@@ -52,7 +52,7 @@ void init_gdt()
 	load_gdt((struct GDT*)&gdt_ptr);
         kprint("Loaded GDT.\n", 15);
 
-	asm("mov ax, 0x28");
+	asm("mov ax, 0x2b");
 	asm("ltr ax");
 
 	kprint("Loaded TSS.\n", 15);

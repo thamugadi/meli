@@ -41,6 +41,8 @@ clean:
 	rm *.o *.elf 
 run:
 	qemu-system-i386 -m $(RAM) -kernel mel.elf
+kvm:
+	qemu-system-i386 -m $(RAM) --enable-kvm -kernel mel.elf
 debug:
 	qemu-system-i386 -m $(RAM) -kernel mel.elf -d in_asm
 debug_cpu:

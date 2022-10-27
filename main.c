@@ -14,6 +14,6 @@ void main()
 	init_idt();
 	init_pic();
 
-	set_usermode(&user_test);
+	set_usermode(&user_test); // run our first usermode program.
 	while(1);
 }

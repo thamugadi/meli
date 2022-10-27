@@ -37,6 +37,10 @@ void irq13() {irq_handler(13);}
 void irq14() {irq_handler(14);} 
 void irq15() {irq_handler(15);} 
 
+void syscall_handler() {asm("cli"); kprint("TODO: implement syscalls", 5);} 
+
+
+
 void ex0() {exception_handler(0); }
 void ex1() {exception_handler(1); }
 void ex2() {exception_handler(2); }
@@ -75,38 +79,38 @@ struct IDT idt[256];
 struct IDT_PTR idt_ptr;
 void init_idt()
 {
-	FILL_IDT_ENTRY(0x00,  (unsigned int)&ex0,   0x8, 0x8E);
-	FILL_IDT_ENTRY(0x01,  (unsigned int)&ex1,   0x8, 0x8E);
-	FILL_IDT_ENTRY(0x02,  (unsigned int)&ex2,   0x8, 0x8E);
-	FILL_IDT_ENTRY(0x03,  (unsigned int)&ex3,   0x8, 0x8E);
-	FILL_IDT_ENTRY(0x04,  (unsigned int)&ex4,   0x8, 0x8E);
-	FILL_IDT_ENTRY(0x05,  (unsigned int)&ex5,   0x8, 0x8E);
-	FILL_IDT_ENTRY(0x06,  (unsigned int)&ex6,   0x8, 0x8E);
-	FILL_IDT_ENTRY(0x07,  (unsigned int)&ex7,   0x8, 0x8E);
-	FILL_IDT_ENTRY(0x08,  (unsigned int)&ex8,   0x8, 0x8E);
-	FILL_IDT_ENTRY(0x09,  (unsigned int)&ex9,   0x8, 0x8E);
-	FILL_IDT_ENTRY(0x0A,  (unsigned int)&ex10,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x0B,  (unsigned int)&ex11,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x0C,  (unsigned int)&ex12,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x0D,  (unsigned int)&ex13,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x0E,  (unsigned int)&ex14,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x0F,  (unsigned int)&ex15,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x10,  (unsigned int)&ex16,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x11,  (unsigned int)&ex17,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x12,  (unsigned int)&ex18,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x13,  (unsigned int)&ex19,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x14,  (unsigned int)&ex20,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x15,  (unsigned int)&ex21,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x16,  (unsigned int)&ex22,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x17,  (unsigned int)&ex23,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x18,  (unsigned int)&ex24,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x19,  (unsigned int)&ex25,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x1A,  (unsigned int)&ex26,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x1B,  (unsigned int)&ex27,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x1C,  (unsigned int)&ex28,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x1D,  (unsigned int)&ex29,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x1E,  (unsigned int)&ex30,  0x8, 0x8E);
-	FILL_IDT_ENTRY(0x1F,  (unsigned int)&ex31,  0x8, 0x8E);
+	FILL_IDT_ENTRY(0x00,  (unsigned int)&ex0,   0x8, 0x8F);
+	FILL_IDT_ENTRY(0x01,  (unsigned int)&ex1,   0x8, 0x8F);
+	FILL_IDT_ENTRY(0x02,  (unsigned int)&ex2,   0x8, 0x8F);
+	FILL_IDT_ENTRY(0x03,  (unsigned int)&ex3,   0x8, 0x8F);
+	FILL_IDT_ENTRY(0x04,  (unsigned int)&ex4,   0x8, 0x8F);
+	FILL_IDT_ENTRY(0x05,  (unsigned int)&ex5,   0x8, 0x8F);
+	FILL_IDT_ENTRY(0x06,  (unsigned int)&ex6,   0x8, 0x8F);
+	FILL_IDT_ENTRY(0x07,  (unsigned int)&ex7,   0x8, 0x8F);
+	FILL_IDT_ENTRY(0x08,  (unsigned int)&ex8,   0x8, 0x8F);
+	FILL_IDT_ENTRY(0x09,  (unsigned int)&ex9,   0x8, 0x8F);
+	FILL_IDT_ENTRY(0x0A,  (unsigned int)&ex10,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x0B,  (unsigned int)&ex11,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x0C,  (unsigned int)&ex12,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x0D,  (unsigned int)&ex13,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x0E,  (unsigned int)&ex14,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x0F,  (unsigned int)&ex15,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x10,  (unsigned int)&ex16,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x11,  (unsigned int)&ex17,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x12,  (unsigned int)&ex18,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x13,  (unsigned int)&ex19,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x14,  (unsigned int)&ex20,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x15,  (unsigned int)&ex21,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x16,  (unsigned int)&ex22,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x17,  (unsigned int)&ex23,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x18,  (unsigned int)&ex24,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x19,  (unsigned int)&ex25,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x1A,  (unsigned int)&ex26,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x1B,  (unsigned int)&ex27,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x1C,  (unsigned int)&ex28,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x1D,  (unsigned int)&ex29,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x1E,  (unsigned int)&ex30,  0x8, 0x8F);
+	FILL_IDT_ENTRY(0x1F,  (unsigned int)&ex31,  0x8, 0x8F);
 
 	FILL_IDT_ENTRY(0x20,  (unsigned int)&irq0,  0x8, 0x8E);
 	FILL_IDT_ENTRY(0x21,  (unsigned int)&irq1,  0x8, 0x8E);
@@ -124,6 +128,11 @@ void init_idt()
         FILL_IDT_ENTRY(0x2D,  (unsigned int)&irq13, 0x8, 0x8E);
         FILL_IDT_ENTRY(0x2E,  (unsigned int)&irq14, 0x8, 0x8E);
         FILL_IDT_ENTRY(0x2F,  (unsigned int)&irq15, 0x8, 0x8E);
+
+
+        FILL_IDT_ENTRY(0x30,  (unsigned int)&syscall_handler, 0x8, 0xEE);
+
+
 
         idt_ptr.idt_size = sizeof(idt) - 1;
         idt_ptr.idt_addr = (struct IDT*)&idt;
