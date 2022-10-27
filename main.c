@@ -1,4 +1,5 @@
 extern void user_test(void) __attribute__((section(".ring3")));
+
 void main()
 {
         free_vram();
