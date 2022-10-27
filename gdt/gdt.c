@@ -1,3 +1,4 @@
+#include "gdt.h"
 #include "tss.h"
 
 #define FILL_GDT_ENTRY(n, l015, b015, b1623, ac, gr, b2431) \
@@ -7,22 +8,6 @@
                 gdt[n].access = ac; \
                 gdt[n].granularity = gr; \
                 gdt[n].base_24_31 = b2431;
-
-struct GDT
-{
-	unsigned short limit_0_15; 
-	unsigned short base_0_15;  
-	unsigned char base_16_23;
-	unsigned char access;  
-	unsigned char granularity;  
-	unsigned char base_24_31;  
-} __attribute__((packed));
-
-struct GDT_PTR
-{
-	unsigned short gdt_size;
-	struct GDT* gdt_addr;  
-} __attribute__((packed));
 
 struct GDT gdt[6];
 struct GDT_PTR gdt_ptr;

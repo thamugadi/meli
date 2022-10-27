@@ -11,7 +11,7 @@ lib.o : lib/lib.c
 	gcc $(CCFLAGS) lib/lib.c
 kprint.o : lib/kprint.c
 	gcc $(CCFLAGS) lib/kprint.c
-gdt.o : gdt/gdt.c
+gdt.o : gdt/gdt.c gdt/gdt.h gdt/tss.h
 	gcc $(CCFLAGS) gdt/gdt.c
 idt.o : idt/idt.c
 	gcc $(CCFLAGS) idt/idt.c

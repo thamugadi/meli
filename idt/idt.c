@@ -37,10 +37,6 @@ void irq13() {irq_handler(13);}
 void irq14() {irq_handler(14);} 
 void irq15() {irq_handler(15);} 
 
-void syscall_handler() {asm("cli"); kprint("TODO: implement syscalls", 5);} 
-
-
-
 void ex0() {exception_handler(0); }
 void ex1() {exception_handler(1); }
 void ex2() {exception_handler(2); }
@@ -74,6 +70,7 @@ void ex29() {exception_handler(29); }
 void ex30() {exception_handler(30); }
 void ex31() {exception_handler(31); }
 
+void syscall_handler() {asm("cli"); kprint("TODO: implement syscalls", 5);}
 
 struct IDT idt[256];
 struct IDT_PTR idt_ptr;
@@ -129,10 +126,7 @@ void init_idt()
         FILL_IDT_ENTRY(0x2E,  (unsigned int)&irq14, 0x8, 0x8E);
         FILL_IDT_ENTRY(0x2F,  (unsigned int)&irq15, 0x8, 0x8E);
 
-
         FILL_IDT_ENTRY(0x30,  (unsigned int)&syscall_handler, 0x8, 0xEE);
-
-
 
         idt_ptr.idt_size = sizeof(idt) - 1;
         idt_ptr.idt_addr = (struct IDT*)&idt;
