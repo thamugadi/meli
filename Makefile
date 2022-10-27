@@ -1,4 +1,4 @@
-RAM=1G
+RAM=2G
 CCFLAGS= -c -w -m32 -fno-stack-protector -masm=intel
 mel.elf : main.o init.o kprint.o lib.o gdt.o idt.o keyboard.o paging.o gdt_s.elf idt_s.elf irq.o exceptions.o ring3.elf keyboard_s.elf paging_s.elf pic.elf linker.ld boot.elf
 	ld -m elf_i386 -T linker.ld main.o init.o boot.elf kprint.o lib.o paging.o idt.o gdt.o keyboard.o gdt_s.elf idt_s.elf irq.o pic.elf exceptions.o ring3.elf keyboard_s.elf paging_s.elf -o mel.elf
