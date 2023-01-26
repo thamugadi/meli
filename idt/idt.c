@@ -71,7 +71,7 @@ void ex29() {exception_handler(29); }
 void ex30() {exception_handler(30); }
 void ex31() {exception_handler(31); }
 
-void syscall_handler() {asm("cli"); kprint("TODO: implement syscalls", 5);}
+extern void syscall_handler();
 
 struct IDT idt[256];
 struct IDT_PTR idt_ptr;
