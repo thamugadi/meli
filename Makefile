@@ -1,7 +1,7 @@
 RAM=3G
 CCFLAGS= -c -w -m32 -fno-stack-protector -masm=intel
 
-OBJS = main.o init.o boot.elf kprint.o lib.o paging.o idt.o gdt.o keyboard.o gdt.elf idt.elf irq.o pic.elf exceptions.o handler.o ring3.elf keyboard.elf paging.elf
+OBJS = main.o init.elf boot.elf kprint.o lib.o paging.o idt.o gdt.o keyboard.o gdt.elf idt.elf irq.o pic.elf exceptions.o handler.o ring3.elf keyboard.elf paging.elf
 
 mel.elf : $(OBJS) linker.ld
 	ld -m elf_i386 -T linker.ld $(OBJS) -o mel.elf
@@ -49,7 +49,8 @@ ring3.elf : usermode/ring3.s
 
 boot.elf : boot/boot.s
 	as --32 boot/boot.s -o boot.elf
-
+init.elf : init.c
+	gcc $(CCFLAGS) -O2 init.c -o init.elf
 
 clean: 
 	rm *.o *.elf 
