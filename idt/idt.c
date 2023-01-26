@@ -4,6 +4,7 @@
                 idt[n].z = 0; \
                 idt[n].type = type1; \
                 idt[n].base_16_31 = (base >> 16) & 0xffff;
+
 struct IDT
 {
 	unsigned short base_0_15;

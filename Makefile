@@ -17,7 +17,7 @@ idt.o : idt/idt.c
 	gcc $(CCFLAGS) idt/idt.c
 keyboard.o : keyboard/keyboard.c
 	gcc $(CCFLAGS) keyboard/keyboard.c
-paging.o : paging/paging.o
+paging.o : paging/paging.c
 	gcc $(CCFLAGS) paging/paging.c
 paging_s.elf : paging/paging.s
 	as --32 paging/paging.s -o paging_s.elf
