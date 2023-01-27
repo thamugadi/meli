@@ -11,8 +11,13 @@ void sys_read(char* buf, int n)
 	}
 }
 
-void sys_write(char* buf, int n)
+void sys_write()
 {
+	register char* buf_ asm("ecx");
+	register int n_ asm("edx");
+
+	char* buf = buf_;
+	int n = n_;
 	kprint("TODO: add write syscall");
 	int i = 0;
 	for (i = 0; i < n; i++)
