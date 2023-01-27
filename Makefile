@@ -1,4 +1,6 @@
 RAM=3G
+QEMU=qemu-system-i386 -m $(RAM)
+KERNEL=-kernel mel.elf
 CCFLAGS= -c -w -m32 -fno-stack-protector -masm=intel
 
 OBJS = main.o init.elf boot.elf kprint.o kmisc.o paging.o idt.o gdt.o keyboard.o azerty.o gdt.elf idt.elf irq.o pic.elf exceptions.o handler.o handler.elf ring3.elf keyboard.elf paging.elf 
@@ -58,16 +60,12 @@ init.elf : init.c
 clean: 
 	rm *.o *.elf 
 run:
-	qemu-system-i386 -m $(RAM) -kernel mel.elf
-kvm:
-	qemu-system-i386 -m $(RAM) --enable-kvm -kernel mel.elf
+	$(QEMU) $(KERNEL)
 debug:
-	qemu-system-i386 -m $(RAM) -kernel mel.elf -d in_asm
+	$(QEMU) $(KERNEL) -d in_asm
 debug_cpu:
-	qemu-system-i386 -m $(RAM) -kernel mel.elf -d cpu
-debug_int:
-	qemu-system-i386 -m $(RAM) -kernel mel.elf -d int -M smm=off 
+	$(QEMU) $(KERNEL) -d cpu
 gdb:
-	qemu-system-i386 -m $(RAM) -s -S -kernel mel.elf
+	$(QEMU) -s -S $(KERNEL)
 all:
 	make clean && make && make run
