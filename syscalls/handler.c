@@ -30,5 +30,4 @@ void sys_write()
 	{
 		kprint(&buf[i], 3);
 	}
-	asm("jmp $");
 }
