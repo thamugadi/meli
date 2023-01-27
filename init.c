@@ -4,6 +4,7 @@ void user_test(void) __attribute__((section(".ring3")));
 
 void user_test(void)
 {
+	asm("mov edi, 1");
 	asm("int 0x30");
 	asm("jmp $");
 }

@@ -27,7 +27,7 @@ exceptions.o : interrupts/exceptions/exceptions.c
 	gcc $(CCFLAGS) interrupts/exceptions/exceptions.c
 
 %.o : syscalls/%.c
-	gcc $(CCFLAGS) $<
+	gcc $(CCFLAGS) -O2 $<
 
 pic.elf : 8259_PIC/pic.s
 	as --32 8259_PIC/pic.s -o pic.elf
