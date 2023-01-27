@@ -11,7 +11,7 @@ void main()
         read_keyboard();
 
         init_gdt();
-        init_32bit_paging();
+        init_32bit_paging(0); // directory 0
 	init_idt();
 	init_pic();
 

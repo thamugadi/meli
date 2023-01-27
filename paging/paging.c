@@ -4,39 +4,38 @@ extern void enable_32bit_paging();
 unsigned int page_directories[1024][1024]; 
 unsigned int page_tables[16][1024][1024];
 
-int current_d = 0;
+//int current_d = 0;
 
-void map_table(unsigned int paddr, unsigned int vaddr, int flags)
+void map_table(int dir, unsigned int paddr, unsigned int vaddr, int flags)
 {
         unsigned int directory_e = vaddr >> 22;
         unsigned int page = (paddr/0x00400000);
         unsigned int i;
         for (i = 0; i < 1024; i++)
         {
-                page_tables[current_d][directory_e][i] = ((page*1024 + i)*0x1000) | flags;
+                page_tables[dir][directory_e][i] = ((page*1024 + i)*0x1000) | flags;
         }
-        page_directories[current_d][directory_e] =
-		(unsigned int)page_tables[current_d][directory_e] | flags;
+        page_directories[dir][directory_e] = (unsigned int)page_tables[dir][directory_e] | flags;
 }
 
-void map_tables(unsigned int paddr, unsigned int vaddr, int flags, int n)
+void map_tables(int dir, unsigned int paddr, unsigned int vaddr, int flags, int n)
 {
         int i;
         for (i = 0; i < n; i++)
         {
-                map_table(paddr+(i*0x400000), vaddr+(i*0x400000), flags);
+                map_table(dir, paddr+(i*0x400000), vaddr+(i*0x400000), flags);
         }
 }
-#define map_user_tables(paddr, vaddr, n) map_tables(paddr, vaddr, 7, n)
-#define map_kernel_tables(paddr, vaddr, n) map_tables(paddr, vaddr, 3, n) 
+#define map_user_tables(dir, paddr, vaddr, n) map_tables(dir, paddr, vaddr, 7, n)
+#define map_kernel_tables(dir, paddr, vaddr, n) map_tables(dir, paddr, vaddr, 3, n) 
 
-void init_32bit_paging()
+void init_32bit_paging(int dir)
 {
-        map_kernel_tables(0, 0, 128);
+        map_kernel_tables(dir, 0, 0, 128);
         kprint("Mapped 128 tables for kernel mode.\n", 15);
-        map_user_tables(0x400000*128, 0x400000*128, 128);
+        map_user_tables(dir, 0x400000*128, 0x400000*128, 128);
         kprint("Mapped 128 tables for user mode.\n", 15);
-        set_32bit_cr3(page_directories[current_d]);
+        set_32bit_cr3(page_directories[dir]);
         enable_32bit_paging();
         kprint("Enabled paging.\n", 15);
 }
