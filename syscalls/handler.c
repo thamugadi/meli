@@ -1,5 +1,11 @@
-void sys_read(char* buf, int n)
+void sys_read()
 {
+        register char* buf_ asm("ecx");
+        register int n_ asm("edx");
+
+	char* buf = buf_;
+	int n = n_;
+
 	kprint("TODO: add read syscall");
 	int i = 0;
 	unsigned char r = read_keyboard();
