@@ -27,15 +27,8 @@ void map_tables(unsigned int paddr, unsigned int vaddr, int flags, int n)
                 map_table(paddr+(i*0x400000), vaddr+(i*0x400000), flags);
         }
 }
-
-void map_user_tables(unsigned int paddr, unsigned int vaddr, int n)
-{
-        map_tables(paddr,vaddr,7,n);
-}
-void map_kernel_tables(unsigned int paddr, unsigned int vaddr, int n)
-{
-        map_tables(paddr,vaddr,3,n);
-}
+#define map_user_tables(paddr, vaddr, n) map_tables(paddr, vaddr, 7, n)
+#define map_kernel_tables(paddr, vaddr, n) map_tables(paddr, vaddr, 3, n) 
 
 void init_32bit_paging()
 {
