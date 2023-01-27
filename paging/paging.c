@@ -27,13 +27,16 @@ void map_tables(int dir, unsigned int paddr, unsigned int vaddr, int flags, int 
 #define map_user_tables(dir, paddr, vaddr, n) map_tables(dir, paddr, vaddr, 7, n)
 #define map_kernel_tables(dir, paddr, vaddr, n) map_tables(dir, paddr, vaddr, 3, n) 
 
-void init_32bit_paging(int dir)
+void map_directory(int dir, int debug)
 {
         map_kernel_tables(dir, 0, 0, 128);
-        kprint("Mapped 128 tables for kernel mode.\n", 15);
+        if (debug) kprint("Mapped 128 tables for kernel mode.\n", 15);
         map_user_tables(dir, 0x400000*128, 0x400000*128, 128);
-        kprint("Mapped 128 tables for user mode.\n", 15);
-        set_32bit_cr3(page_directories[dir]);
-        enable_32bit_paging();
-        kprint("Enabled paging.\n", 15);
+        if (debug) kprint("Mapped 128 tables for user mode.\n", 15);
 }
+
+void change_directory(int dir)
+{
+	set_32bit_cr3(page_directories[dir]);
+}
+

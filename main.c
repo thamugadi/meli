@@ -1,3 +1,4 @@
+#define DEBUG 1
 extern void user_test(void) __attribute__((section(".ring3")));
 
 void main()
@@ -11,7 +12,13 @@ void main()
         read_keyboard();
 
         init_gdt();
-        init_32bit_paging(0); // directory 0
+
+        map_directory(0, DEBUG); 
+			    
+	change_directory(0);
+	
+	enable_32bit_paging();
+
 	init_idt();
 	init_pic();
 
