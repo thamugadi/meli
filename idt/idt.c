@@ -21,7 +21,12 @@ struct IDT_PTR
 	struct IDT* idt_addr;  // base address of the first IDT segment
 } __attribute__((packed));
 
-void irq0() {irq_handler(0);}
+void irq0() {
+	asm("cli");
+	irq_handler(0);
+	asm("add esp, 12");
+	asm("iret");
+}
 void irq1() {irq_handler(1);} 
 void irq2() {irq_handler(2);} 
 void irq3() {irq_handler(3);} 
