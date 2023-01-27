@@ -1,7 +1,7 @@
 extern void set_32bit_cr3(unsigned int cr3_phdr); 
 extern void enable_32bit_paging();
 
-unsigned int page_directories[1024][1024]; 
+unsigned int page_directories[16][1024]; 
 unsigned int page_tables[16][1024][1024];
 
 void map_table(int dir, unsigned int paddr, unsigned int vaddr, int flags)
