@@ -9,6 +9,7 @@ syscall_handler:
 cli
 push ecx
 push edx
+
 cmp edi, 0
 je tr_read
 cmp edi, 1
@@ -16,8 +17,12 @@ je tr_write
 jmp $
 tr_read:
 call sys_read
-jmp $
-
+jmp end
 tr_write:
 call sys_write
-jmp $
+jmp end
+
+end:
+pop ecx
+pop edx
+iret

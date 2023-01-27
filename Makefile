@@ -1,4 +1,4 @@
-RAM=1G
+RAM=3G
 QEMU=qemu-system-i386 -m $(RAM)
 KERNEL=-kernel mel.elf
 CCFLAGS= -c -w -m32 -fno-stack-protector -masm=intel

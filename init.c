@@ -8,4 +8,5 @@ void user_test(void)
 	asm("mov ecx, 2");
 	asm("mov edx, 10");
 	asm("int 0x30");
+	asm("jmp $");
 }
