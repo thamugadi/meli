@@ -35,6 +35,7 @@ void irq0() {
 	END_ROUTINE(0);
 }
 void irq1() {
+	asm("cli");
 	irq_handler(1);
 	asm("add esp, 12");
 	END_ROUTINE(1);
