@@ -19,7 +19,6 @@ void main()
 	change_directory(0);
 	
 	enable_32bit_paging();
-
 	init_idt();
 	init_pic();
 
