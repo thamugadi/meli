@@ -4,7 +4,7 @@ void user_test(void) __attribute__((section(".ring3")));
 
 void user_test(void)
 {
-	char buf[0x100];
+	char buf[0x40];
 	read(&buf, 30);
 	asm("jmp $");
 }

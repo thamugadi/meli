@@ -7,6 +7,9 @@ void sys_read()
 	int n = n_;
 
 	int i = 0;
+	
+	// Will be removed:
+
 	unsigned char r = read_keyboard();
 	while (r != 0x1C && i < n)
 	{
@@ -18,6 +21,7 @@ void sys_read()
 			i++;
 		}
 	}
+	buf[i]=0;
 }
 
 void sys_write()
