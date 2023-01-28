@@ -26,7 +26,7 @@ void map_tables(int dir, unsigned int paddr, unsigned int vaddr, int flags, int 
 }
 #define map_user_tables(dir, paddr, vaddr, n) map_tables(dir, paddr, vaddr, 7, n)
 #define map_kernel_tables(dir, paddr, vaddr, n) map_tables(dir, paddr, vaddr, 3, n) 
-#define T 1024 
+#define T 1024
 void map_directory(int dir, int debug)
 {
         map_kernel_tables(dir, 0, 0, T);

@@ -2,6 +2,7 @@ unsigned char current_key;
 //23 1b 08 10
 void irq_handler(int irq)
 {
+	asm("pushad");
 	asm("mov ax, 0x10");
 	asm("mov ds, ax");
 	asm("mov es, ax");
@@ -25,4 +26,5 @@ void irq_handler(int irq)
         asm("mov es, ax");
         asm("mov fs, ax");
         asm("mov gs, ax");
+	asm("popad");
 }
