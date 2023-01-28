@@ -10,7 +10,7 @@ void sys_read()
 	unsigned char r = read_keyboard();
 	while (r != 0x1C && i < n)
 	{
-		if (1)
+		if (r)
 		{
 			buf[i] = k2ascii(r,0);
 			kprint(&buf[i],13);
