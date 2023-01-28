@@ -45,6 +45,7 @@ char azerty2c(int keycode, int maj)
 
     		case 0x3B : return '['; break;
     		case 0x44 : return ']'; break;
+		default : return 0; break;
 	}
 
 }

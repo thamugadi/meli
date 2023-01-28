@@ -9,7 +9,7 @@ mel.elf : $(OBJS) linker.ld
 	ld -m elf_i386 -T linker.ld $(OBJS) -o mel.elf
 
 %.o : %.c
-	gcc $(CCFLAGS) -O2 $<
+	gcc $(CCFLAGS) -O0 $<
 
 %.o : libkernel/%.c
 	gcc $(CCFLAGS) $<
@@ -29,7 +29,7 @@ exceptions.o : interrupts/exceptions/exceptions.c
 	gcc $(CCFLAGS) interrupts/exceptions/exceptions.c
 
 %.o : syscalls/%.c
-	gcc $(CCFLAGS) -O2 $<
+	gcc $(CCFLAGS) -O0 $<
 handler.elf : syscalls/handler.s
 	as --32 $< -o handler.elf
 
@@ -48,14 +48,14 @@ paging.elf : paging/paging.s
 	as --32 paging/paging.s -o paging.elf
 
 %.o : usermode/%.c
-	gcc $(CCFLAGS) -O2 $<
+	gcc $(CCFLAGS) -O0 $<
 ring3.elf : usermode/ring3.s
 	as --32 usermode/ring3.s -o ring3.elf
 
 boot.elf : boot/boot.s
 	as --32 boot/boot.s -o boot.elf
 init.elf : init.c
-	gcc $(CCFLAGS) -O2 init.c -o init.elf
+	gcc $(CCFLAGS) -O0 init.c -o init.elf
 
 clean: 
 	rm *.o *.elf 
