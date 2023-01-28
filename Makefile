@@ -1,5 +1,5 @@
 RAM=3G
-QEMU=qemu-system-x86_64 -m $(RAM)
+QEMU=qemu-system-i386 -m $(RAM)
 KERNEL=-kernel mel.elf
 CCFLAGS= -c -w -m32 -fno-stack-protector -masm=intel
 
@@ -61,6 +61,8 @@ clean:
 	rm *.o *.elf 
 run:
 	$(QEMU) $(KERNEL)
+kvm:
+	$(QEMU) --enable-kvm $(KERNEL)
 debug:
 	$(QEMU) $(KERNEL) -d in_asm
 debug_cpu:
