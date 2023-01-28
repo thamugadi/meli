@@ -37,7 +37,7 @@ void irq0() {
 void irq1() {
 	irq_handler(1);
 	asm("add esp, 12");
-	END_ROUTINE(0);
+	END_ROUTINE(1);
 } 
 void irq2() {irq_handler(2);} 
 void irq3() {irq_handler(3);} 
