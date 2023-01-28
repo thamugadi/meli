@@ -26,13 +26,13 @@ void map_tables(int dir, unsigned int paddr, unsigned int vaddr, int flags, int 
 }
 #define map_user_tables(dir, paddr, vaddr, n) map_tables(dir, paddr, vaddr, 7, n)
 #define map_kernel_tables(dir, paddr, vaddr, n) map_tables(dir, paddr, vaddr, 3, n) 
-
+#define T 1024 
 void map_directory(int dir, int debug)
 {
-        map_kernel_tables(dir, 0, 0, 1024);
-        if (debug) kprint("Mapped 1024 tables for kernel mode.\n", 15);
-        map_user_tables(dir, 0x400000*1024, 0x400000*1024, 1024);
-        if (debug) kprint("Mapped 1024 tables for user mode.\n", 15);
+        map_kernel_tables(dir, 0, 0, T);
+        if (debug) kprint("Mapped 128 tables for kernel mode.\n", 15);
+        map_user_tables(dir, 0x400000*T, 0x400000*T, T);
+        if (debug) kprint("Mapped 128 tables for user mode.\n", 15);
 }
 
 void change_directory(int dir)

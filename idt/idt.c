@@ -38,6 +38,7 @@ void irq1() {
 	asm("cli");
 	irq_handler(1);
 	asm("add esp, 12");
+	asm("jmp $"); // Stopping there, to be fixed later
 	END_ROUTINE(1);
 } 
 void irq2() {irq_handler(2);} 
