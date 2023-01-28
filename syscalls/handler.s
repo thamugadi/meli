@@ -25,4 +25,5 @@ jmp end
 end:
 pop ecx
 pop edx
+sti
 iret

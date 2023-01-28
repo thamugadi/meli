@@ -1,9 +1,16 @@
+extern void end_interrupt(int n);
+
 #define FILL_IDT_ENTRY(n, base, ss1, type1) \
                 idt[n].base_0_15 = base & 0xffff; \
                 idt[n].ss = ss1; \
                 idt[n].z = 0; \
                 idt[n].type = type1; \
                 idt[n].base_16_31 = (base >> 16) & 0xffff;
+
+#define END_ROUTINE(n) \
+	asm("sti"); \
+	end_interrupt(n); \
+	asm("iret");
 
 struct IDT
 {
@@ -25,9 +32,13 @@ void irq0() {
 	asm("cli");
 	irq_handler(0);
 	asm("add esp, 12");
-	asm("iret");
+	END_ROUTINE(0);
 }
-void irq1() {irq_handler(1);} 
+void irq1() {
+	irq_handler(1);
+	asm("add esp, 12");
+	END_ROUTINE(0);
+} 
 void irq2() {irq_handler(2);} 
 void irq3() {irq_handler(3);} 
 void irq4() {irq_handler(4);} 
