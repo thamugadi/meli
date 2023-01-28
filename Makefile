@@ -6,7 +6,7 @@ CCFLAGS= -c -w -m32 -fno-stack-protector -masm=intel
 OBJS = main.o init.elf boot.elf kprint.o kmisc.o paging.o idt.o gdt.o keyboard.o azerty.o gdt.elf idt.elf irq.o pic.elf exceptions.o handler.o handler.elf ring3.elf keyboard.elf paging.elf 
 
 mel.elf : $(OBJS) linker.ld
-	ld -m elf_i386 -T linker.ld $(OBJS) -o mel.elf
+	ld -z noexecstack -m elf_i386 -T linker.ld $(OBJS) -o mel.elf
 
 %.o : %.c
 	gcc $(CCFLAGS) -O0 $<
