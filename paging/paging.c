@@ -4,7 +4,7 @@ extern void enable_32bit_paging();
 unsigned int page_directories[16][1024]; 
 unsigned int page_tables[16][1024][1024];
 
-void map_directory(dir)
+void map_kernel_directory(dir)
 {
 	int i;
 	int j;
@@ -17,16 +17,17 @@ void map_directory(dir)
 		}
 	}
 	kprint("Mapped 256 MiB for kernel: 0x00000000-0x0fffffff \n", 15);
-	for (i = 0x40; i < 0xc0; i++)
-	{
-		page_directories[dir][i] = (unsigned int)page_tables[dir][i] | 7;
-		for (j = 0; j < 0x400; j++)
-		{
-			page_tables[dir][i][j] = (i*0x400000+j*0x1000) | 7;
-		}
-	}
-        kprint("Mapped 512 MiB for user: 0x10000000-0x2fffffff\n", 15);
+}
 
+#define INIT_DIR(block) \
+	page_directories[dir][block] = (unsigned int)page_tables[dir][block] | 7; \
+	page_tables[dir][block][0] = (block*0x400000+table*0x1000) | 7;
+
+void init_user_directory(dir, table)
+{
+	INIT_DIR(0x40);
+	INIT_DIR(0x80);
+	INIT_DIR(0xa0);
 }
 
 void change_directory(int dir)

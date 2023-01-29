@@ -14,7 +14,8 @@ void main()
 
         init_gdt();
 
-        map_directory(0, DEBUG); 
+        map_kernel_directory(0); 
+	init_user_directory(0, 0);
 			    
 	change_directory(0);
 	
