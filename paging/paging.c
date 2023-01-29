@@ -30,9 +30,7 @@ void map_tables(int dir, unsigned int paddr, unsigned int vaddr, int flags, int 
 void map_directory(int dir, int debug)
 {
         map_kernel_tables(dir, 0, 0, T);
-        if (debug) kprint("Mapped 128 tables for kernel mode.\n", 15);
         map_user_tables(dir, 0x400000*T, 0x400000*T, T);
-        if (debug) kprint("Mapped 128 tables for user mode.\n", 15);
 }
 
 void change_directory(int dir)
