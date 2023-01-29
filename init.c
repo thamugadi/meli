@@ -1,4 +1,6 @@
-void user_test(void) __attribute__((section(".ring3")));
+unsigned int test_data = 0xcafecafe; __attribute__((section(".ring3data")));
+unsigned int test_bss __attribute__((section(".ring3bss")));
+void user_test(void) __attribute__((section(".ring3text")));
 
 // This is the first program to be runned in usermode.
 

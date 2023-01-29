@@ -17,10 +17,18 @@ SECTIONS
         {
                 *(.bss)
         }
-        . = 0x20000000;
-        .ring3 BLOCK(4K) : ALIGN(4K)
+        . = 0x10000000;
+	
+        .ring3data BLOCK(4K) : ALIGN(4K)
         {
-                *(.ring3)
+                *(.ring3data)
+		*(.ring3bss)
         }
+	. = 0x20000000;
+	.ring3text BLOCK(4K) : ALIGN(4K)
+	{
+		*(.ring3text)
+	}
+
 
 }
