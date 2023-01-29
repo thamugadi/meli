@@ -21,7 +21,6 @@ void main()
 	enable_32bit_paging();
 	init_idt();
 	init_pic();
-
 	set_usermode(&user_test); // run our first usermode program.
 	while(1);
 }

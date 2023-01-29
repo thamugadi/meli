@@ -1,6 +1,6 @@
 #include "gdt.h"
 #include "tss.h"
-
+#define KERNELSTACK 0x00800000
 #define FILL_GDT_ENTRY(n, l015, b015, b1623, ac, gr, b2431) \
                 gdt[n].limit_0_15 = l015; \
                 gdt[n].base_0_15 = b015; \
@@ -27,7 +27,7 @@ void init_gdt()
 	
 	memset(&tss, 0, 104);
 	tss.ss0  = 0x10;
-        tss.esp0 = 0x200000;
+        tss.esp0 = KERNELSTACK;
         tss.iopb = 104;
 
         FILL_GDT_ENTRY(5,104,(unsigned int)(&tss)&0xFFFF, ((unsigned int)(&tss)&0x00FF0000)>>16,0xE9,0x00,((unsigned int)(&tss)&0xFF000000)>>24); //tss

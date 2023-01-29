@@ -55,7 +55,7 @@ ring3.elf : usermode/ring3.s
 boot.elf : boot/boot.s
 	as --32 boot/boot.s -o boot.elf
 init.elf : init.c
-	gcc $(CCFLAGS) -O0 init.c -o init.elf
+	gcc $(CCFLAGS) -O1 init.c -o init.elf
 
 clean: 
 	rm *.o *.elf 

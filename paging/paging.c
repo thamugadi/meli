@@ -4,33 +4,29 @@ extern void enable_32bit_paging();
 unsigned int page_directories[16][1024]; 
 unsigned int page_tables[16][1024][1024];
 
-void map_table(int dir, unsigned int paddr, unsigned int vaddr, int flags)
+void map_directory(dir)
 {
-        unsigned int directory_e = vaddr >> 22;
-        unsigned int page = (paddr/0x00400000);
-        unsigned int i;
-        for (i = 0; i < 1024; i++)
-        {
-                page_tables[dir][directory_e][i] = ((page*1024 + i)*0x1000) | flags;
-        }
-        page_directories[dir][directory_e] = (unsigned int)page_tables[dir][directory_e] | flags;
-}
+	int i;
+	int j;
+        for (i = 0; i < 0x40; i++)
+	{
+		page_directories[dir][i] = (unsigned int)page_tables[dir][i] | 3;
+		for (j = 0; j < 0x400; j++)
+		{
+			page_tables[dir][i][j] = (i*0x400000+j*0x1000) | 3;
+		}
+	}
+	kprint("Mapped 256 MiB for kernel\n", 15);
+	for (i = 0x40; i < 0xc0; i++)
+	{
+		page_directories[dir][i] = (unsigned int)page_tables[dir][i] | 7;
+		for (j = 0; j < 0x400; j++)
+		{
+			page_tables[dir][i][j] = (i*0x400000+j*0x1000) | 7;
+		}
+	}
+        kprint("Mapped 512 MiB for user\n", 15);
 
-void map_tables(int dir, unsigned int paddr, unsigned int vaddr, int flags, int n)
-{
-        int i;
-        for (i = 0; i < n; i++)
-        {
-                map_table(dir, paddr+(i*0x400000), vaddr+(i*0x400000), flags);
-        }
-}
-#define map_user_tables(dir, paddr, vaddr, n) map_tables(dir, paddr, vaddr, 7, n)
-#define map_kernel_tables(dir, paddr, vaddr, n) map_tables(dir, paddr, vaddr, 3, n) 
-#define T 1024
-void map_directory(int dir, int debug)
-{
-        map_kernel_tables(dir, 0, 0, T);
-        map_user_tables(dir, 0x400000*T, 0x400000*T, T);
 }
 
 void change_directory(int dir)
