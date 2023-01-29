@@ -1,7 +1,7 @@
 .intel_syntax noprefix
 .global set_usermode 
 .extern user_test
-
+.set USERSTACK, 0x28000000
 set_usermode:
 mov ax, 0b00100011 
 mov ds, ax
@@ -9,7 +9,7 @@ mov es, ax
 mov fs, ax 
 mov gs, ax 
 
-mov eax, 0x30000000
+mov eax, USERSTACK
 push 0b00100011
 push eax 
 pushf

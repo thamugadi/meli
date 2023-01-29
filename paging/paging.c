@@ -16,7 +16,7 @@ void map_directory(dir)
 			page_tables[dir][i][j] = (i*0x400000+j*0x1000) | 3;
 		}
 	}
-	kprint("Mapped 256 MiB for kernel\n", 15);
+	kprint("Mapped 256 MiB for kernel: 0x00000000-0x0fffffff \n", 15);
 	for (i = 0x40; i < 0xc0; i++)
 	{
 		page_directories[dir][i] = (unsigned int)page_tables[dir][i] | 7;
@@ -25,7 +25,7 @@ void map_directory(dir)
 			page_tables[dir][i][j] = (i*0x400000+j*0x1000) | 7;
 		}
 	}
-        kprint("Mapped 512 MiB for user\n", 15);
+        kprint("Mapped 512 MiB for user: 0x10000000-0x2fffffff\n", 15);
 
 }
 
