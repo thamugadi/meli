@@ -2,7 +2,6 @@
 32-bit hobby kernel.
 todo:
 
-- no more dependence on gcc optimizations
 - memory allocation
 - syscalls
 
