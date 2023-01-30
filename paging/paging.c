@@ -4,7 +4,7 @@ extern void enable_32bit_paging();
 unsigned int page_directories[16][1024]; 
 unsigned int page_tables[16][1024][1024];
 
-void map_kernel_directory(dir)
+void map_kernel_directory(int dir)
 {
 	int i;
 	int j;
@@ -19,7 +19,7 @@ void map_kernel_directory(dir)
 	kprint("Mapped 256 MiB for kernel: 0x00000000-0x0fffffff \n", 15);
 }
 
-void init_user_data(dir, paddr, blocks)
+void init_user_data(int dir, unsigned int paddr, int blocks)
 {
 	if (blocks > 0x10000)
 		kprint("Cannot allocate more than 256MiB for user data\n", 12);
@@ -46,7 +46,7 @@ void init_user_data(dir, paddr, blocks)
 }
 
 
-void init_user_code(dir, paddr, blocks)
+void init_user_code(int dir, unsigned int paddr, int blocks)
 {
         if (blocks > 0x10000)
                 kprint("Cannot allocate more than 256MiB for user data\n", 12);
@@ -71,7 +71,7 @@ void init_user_code(dir, paddr, blocks)
                 }
 	}
 }
-void init_user_stack(dir, paddr, blocks)
+void init_user_stack(int dir, unsigned int paddr, int blocks)
 {
         if (blocks > 0x10000)
                 kprint("Cannot allocate more than 256MiB for user data\n", 12);
