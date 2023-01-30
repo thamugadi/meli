@@ -1,7 +1,7 @@
 RAM=1G
 QEMU=qemu-system-i386 -m $(RAM)
 KERNEL=-kernel mel.elf
-CCFLAGS= -c -w -m32 -fno-stack-protector -masm=intel
+CCFLAGS= -c -w -m32 -fno-stack-protector -fno-pie -masm=intel
 
 OBJS = main.o init.elf boot.elf kprint.o kmisc.o paging.o idt.o gdt.o keyboard.o azerty.o gdt.elf idt.elf irq.o pic.elf exceptions.o handler.o handler.elf ring3.elf keyboard.elf paging.elf 
 
@@ -55,7 +55,7 @@ ring3.elf : usermode/ring3.s
 boot.elf : boot/boot.s
 	as --32 boot/boot.s -o boot.elf
 init.elf : init.c
-	gcc $(CCFLAGS) -fno-pie -O1 init.c -o init.elf
+	gcc $(CCFLAGS) -O1 init.c -o init.elf
 
 clean: 
 	rm *.o *.elf 
