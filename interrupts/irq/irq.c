@@ -1,5 +1,4 @@
 unsigned char current_key;
-//23 1b 08 10
 void irq_handler(int irq)
 {
 	asm("pushad");
