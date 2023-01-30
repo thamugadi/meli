@@ -48,8 +48,8 @@ void init_user_data(int dir, unsigned int paddr, int blocks)
 
 void init_user_code(int dir, unsigned int paddr, int blocks)
 {
-        if (blocks > 0x10000)
-                kprint("Cannot allocate more than 256MiB for user data\n", 12);
+        if (blocks > 0x8000)
+                kprint("Cannot allocate more than 128MiB for user code\n", 12);
         else
         {
                 page_directories[dir][0x80] = (unsigned int)page_tables[dir][0x80] | 7;
@@ -74,7 +74,7 @@ void init_user_code(int dir, unsigned int paddr, int blocks)
 void init_user_stack(int dir, unsigned int paddr, int blocks)
 {
         if (blocks > 0x10000)
-                kprint("Cannot allocate more than 256MiB for user data\n", 12);
+                kprint("Cannot allocate more than 256MiB for user stack\n", 12);
         else
         {
                 page_directories[dir][0xa0] = (unsigned int)page_tables[dir][0xa0] | 7;
