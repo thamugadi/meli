@@ -1,7 +1,10 @@
 # mel
 32-bit hobby kernel.
+todo:
 
-it does include some code from my old dead project: https://github.com/thamugadi/Aferfer. 
+- no more dependence on gcc optimizations
+- memory allocation
+- syscalls
 
 Memory is divided as following:
 
