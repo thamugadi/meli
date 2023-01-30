@@ -19,15 +19,15 @@ void map_kernel_directory(dir)
 	kprint("Mapped 256 MiB for kernel: 0x00000000-0x0fffffff \n", 15);
 }
 
-#define INIT_DIR(block) \
+#define INIT_DIR(dir, table, block) \
 	page_directories[dir][block] = (unsigned int)page_tables[dir][block] | 7; \
 	page_tables[dir][block][0] = (block*0x400000+table*0x1000) | 7;
 
 void init_user_directory(dir, table)
 {
-	INIT_DIR(0x40);
-	INIT_DIR(0x80);
-	INIT_DIR(0xa0);
+	INIT_DIR(dir, table, 0x40);
+	INIT_DIR(dir, table, 0x80);
+	INIT_DIR(dir, table, 0xa0);
 }
 
 void change_directory(int dir)
