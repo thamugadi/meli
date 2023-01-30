@@ -65,8 +65,10 @@ kvm:
 	$(QEMU) --enable-kvm $(KERNEL)
 debug:
 	$(QEMU) $(KERNEL) -d in_asm
-debug_cpu:
+cpu:
 	$(QEMU) $(KERNEL) -d cpu
+int:
+	$(QEMU) $(KERNEL) -d int
 gdb:
 	$(QEMU) -s -S $(KERNEL)
 all:
