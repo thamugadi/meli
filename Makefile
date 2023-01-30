@@ -12,21 +12,21 @@ mel.elf : $(OBJS) linker.ld
 	gcc $(CCFLAGS) -O0 $<
 
 %.o : libkernel/%.c
-	gcc $(CCFLAGS) $<
+	gcc $(CCFLAGS) -O0 $<
 
 gdt.elf : gdt/gdt.s
 	as --32 gdt/gdt.s -o gdt.elf
 gdt.o : gdt/gdt.c gdt/gdt.h gdt/tss.h
-	gcc $(CCFLAGS) $< 
+	gcc $(CCFLAGS) -O0 $< 
 
 idt.o : idt/idt.c
-	gcc $(CCFLAGS) idt/idt.c
+	gcc $(CCFLAGS) -O0 idt/idt.c
 idt.elf: idt/idt.s
 	as --32 idt/idt.s -o idt.elf
 irq.o : interrupts/irq/irq.c
-	gcc $(CCFLAGS) interrupts/irq/irq.c
+	gcc $(CCFLAGS) -O0 interrupts/irq/irq.c
 exceptions.o : interrupts/exceptions/exceptions.c
-	gcc $(CCFLAGS) interrupts/exceptions/exceptions.c
+	gcc $(CCFLAGS) -O0 interrupts/exceptions/exceptions.c
 
 %.o : syscalls/%.c
 	gcc $(CCFLAGS) -O0 $<
@@ -38,12 +38,12 @@ pic.elf : 8259_PIC/pic.s
 	as --32 8259_PIC/pic.s -o pic.elf
 
 %.o : keyboard/%.c
-	gcc $(CCFLAGS) $<
+	gcc $(CCFLAGS) -O0 $<
 keyboard.elf : keyboard/keyboard.s
 	as --32 keyboard/keyboard.s -o keyboard.elf
 
 paging.o : paging/paging.c
-	gcc $(CCFLAGS) paging/paging.c
+	gcc $(CCFLAGS) -O0 paging/paging.c
 paging.elf : paging/paging.s
 	as --32 paging/paging.s -o paging.elf
 
