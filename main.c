@@ -2,6 +2,9 @@ extern void user_test(void) __attribute__((section(".ring3")));
 #define DATA  0x40
 #define CODE  0x80
 #define STACK 0xa0
+
+#define KERNEL 3
+#define USER   7 
 void main()
 {
         free_vram();
@@ -14,11 +17,11 @@ void main()
 
         init_gdt();
 
-        map_kernel_directory(0); 
+	init_memory(0, 0x00,  0x00000000, 0x400000, KERNEL); 
 	
-	init_user_memory(0, DATA,  0x10000000, 1);
-        init_user_memory(0, CODE,  0x20000000, 1);
-        init_user_memory(0, STACK, 0x28000000, 1);
+	init_memory(0, DATA,  0x10000000, 1, USER);
+        init_memory(0, CODE,  0x20000000, 1, USER);
+        init_memory(0, STACK, 0x28000000, 1, USER);
 	change_directory(0);
 
 	enable_32bit_paging();
