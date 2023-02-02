@@ -16,9 +16,9 @@ void main()
 
         map_kernel_directory(0); 
 	
-	init_user(0, DATA,  0x10000000, 1);
-        init_user(0, CODE,  0x20000000, 1);
-        init_user(0, STACK, 0x28000000, 1);
+	init_user_memory(0, DATA,  0x10000000, 1);
+        init_user_memory(0, CODE,  0x20000000, 1);
+        init_user_memory(0, STACK, 0x28000000, 1);
 	change_directory(0);
 
 	enable_32bit_paging();
