@@ -34,20 +34,20 @@ struct IDT_PTR
 
 void irq0() {HANDLE(0);}
 void irq1() {HANDLE(1);} 
-void irq2() {irq_handler(2);} 
-void irq3() {irq_handler(3);} 
-void irq4() {irq_handler(4);} 
-void irq5() {irq_handler(5);} 
-void irq6() {irq_handler(6);} 
-void irq7() {irq_handler(7);} 
-void irq8() {irq_handler(8);} 
-void irq9() {irq_handler(9);} 
-void irq10() {irq_handler(10);} 
-void irq11() {irq_handler(11);} 
-void irq12() {irq_handler(12);} 
-void irq13() {irq_handler(13);} 
-void irq14() {irq_handler(14);} 
-void irq15() {irq_handler(15);} 
+void irq2() {HANDLE(2);} 
+void irq3() {HANDLE(3);} 
+void irq4() {HANDLE(4);} 
+void irq5() {HANDLE(5);} 
+void irq6() {HANDLE(6);} 
+void irq7() {HANDLE(7);} 
+void irq8() {HANDLE(8);} 
+void irq9() {HANDLE(9);} 
+void irq10() {HANDLE(10);} 
+void irq11() {HANDLE(11);} 
+void irq12() {HANDLE(12);} 
+void irq13() {HANDLE(13);} 
+void irq14() {HANDLE(14);} 
+void irq15() {HANDLE(15);} 
 
 void ex0() {exception_handler(0); }
 void ex1() {exception_handler(1); }
