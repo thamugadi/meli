@@ -11,7 +11,7 @@ mel.elf : $(OBJS) linker.ld
 %.o : %.c
 	gcc $(CCFLAGS) -O0 $<
 
-%.o : libkernel/%.c
+%.o : lib/kernel/%.c
 	gcc $(CCFLAGS) -O0 $<
 
 gdt.elf : gdt/gdt.s
