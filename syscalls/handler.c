@@ -1,11 +1,5 @@
-void sys_read()
+void sys_read(char* buf, int n)
 {
-        register char* buf_ asm("ecx");
-        register int n_ asm("edx");
-
-	char* buf = buf_;
-	int n = n_;
-
 	int i = 0;
 	
 	// Will be removed:
@@ -24,16 +18,9 @@ void sys_read()
 	buf[i]=0;
 }
 
-void sys_write()
+void sys_write(char* buf, int n)
 {
-	register char* buf_ asm("ecx");
-	register int n_ asm("edx");
-
-	char* buf = buf_;
-	int n = n_;
 	int i = 0;
 	for (i = 0; i < n; i++)
-	{
 		kprint(&buf[i], 3);
-	}
 }
