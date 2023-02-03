@@ -7,8 +7,8 @@ void user_test(void) __attribute__((section(".ring3text")));
 void user_test(void)
 {
 	test_data=1;
-	asm("jmp $");
-	char buf[0x40];
+	asm("push 100");
+	asm("push 200");
 	asm("jmp $");
 }
 
