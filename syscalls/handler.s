@@ -15,9 +15,13 @@ cmp eax, 1
 je tr_write
 jmp $
 tr_read:
+push ebx
+push ecx
 call sys_read
 jmp end
 tr_write:
+push ebx
+push ecx
 call sys_write
 jmp end
 end:

@@ -1,9 +1,8 @@
 void sys_read(char* buf, int n)
 {
 	int i = 0;
-	
+	asm("jmp $");
 	// Will be removed:
-
 	unsigned char r = read_keyboard();
 	while (r != 0x1C && i < n)
 	{
