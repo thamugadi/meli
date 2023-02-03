@@ -1,12 +1,11 @@
 unsigned char current_key;
 void irq_handler(int irq)
 {
-	asm("pushad");
-	asm("mov ax, 0x10");
-	asm("mov ds, ax");
-	asm("mov es, ax");
-	asm("mov fs, ax");
-	asm("mov gs, ax");
+	asm volatile("mov ax, 0x10");
+	asm volatile("mov ds, ax");
+	asm volatile("mov es, ax");
+	asm volatile("mov fs, ax");
+	asm volatile("mov gs, ax");
 	char buf[4];
 	itoa(irq, buf);
 	if (irq)
@@ -20,10 +19,9 @@ void irq_handler(int irq)
 	{
 		current_key = read_keyboard();
 	}
-	asm("mov ax, 0x23");
-        asm("mov ds, ax");
-        asm("mov es, ax");
-        asm("mov fs, ax");
-        asm("mov gs, ax");
-	asm("popad");
+	asm volatile("mov ax, 0x23");
+        asm volatile("mov ds, ax");
+        asm volatile("mov es, ax");
+        asm volatile("mov fs, ax");
+        asm volatile("mov gs, ax");
 }

@@ -7,11 +7,15 @@ extern void end_interrupt(int n);
                 idt[n].type = type1; \
                 idt[n].base_16_31 = (base >> 16) & 0xffff;
 
-#define END_ROUTINE(n) \
-	asm("sti"); \
+#define HANDLE(n) \
+	asm volatile("cli"); \
+	asm volatile ("pushad"); \
+	irq_handler(n); \
 	end_interrupt(n); \
-	asm("iret");
-
+	asm volatile("add esp, 12"); \
+	asm volatile("popad"); \
+	asm volatile("sti"); \
+	asm volatile("iret");
 struct IDT
 {
 	unsigned short base_0_15;
@@ -28,18 +32,8 @@ struct IDT_PTR
 	struct IDT* idt_addr;  // base address of the first IDT segment
 } __attribute__((packed));
 
-void irq0() {
-	asm("cli");
-	irq_handler(0);
-	asm("add esp, 12");
-	END_ROUTINE(0);
-}
-void irq1() {
-	asm("cli");
-	irq_handler(1);
-	asm("add esp, 12");
-	END_ROUTINE(1);
-} 
+void irq0() {HANDLE(0);}
+void irq1() {HANDLE(1);} 
 void irq2() {irq_handler(2);} 
 void irq3() {irq_handler(3);} 
 void irq4() {irq_handler(4);} 
