@@ -17,7 +17,7 @@ void main()
 
         init_gdt();
 
-	init_memory(0, 0x00,  0x00000000, 0x400000, KERNEL); 
+	init_memory(0, 0x00,  0x00000000, 0x10000, KERNEL); 
 	
 	init_memory(0, DATA,  0x10000000, 1, USER);
         init_memory(0, CODE,  0x20000000, 1, USER);

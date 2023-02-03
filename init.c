@@ -8,9 +8,8 @@ void write(char* buf, int n) __attribute__((section(".ring3text")));
 
 void user_test(void)
 {
-	test_data=1;
-	char buf[0x40];
-	read(buf, 100);
+//	test_data=1;
+//	char buf[0x40];
 	asm("jmp $");
 }
 

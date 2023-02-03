@@ -7,5 +7,8 @@ void exception_handler(int ex)
         kprint("exception ", 14);
         kprint(buf, 14);
         kprint("\n", 14);
-        while(1);
+	if (ex == 6)
+	{
+	}
+	while(1);
 }
