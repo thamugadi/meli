@@ -2,6 +2,7 @@
 32-bit hobby kernel.
 todo:
 
+- disk & filesystem
 - memory allocation
 - ELF loader
 - scheduling
