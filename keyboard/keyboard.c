@@ -7,6 +7,7 @@ unsigned char read_keyboard()
                 read = input(0x64);
         } while (!(read & 1));
         read = input(0x60); 
+	if (read == 0x36) return 0x1C;
         return read;
 }
 
