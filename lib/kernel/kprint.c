@@ -45,7 +45,12 @@ void kprint(char *text, char color)
                 }
         }
 }
-
+void putchar(char c, char color)
+{
+	char buf[4] = "\0\0\0";
+	buf[0] = c;
+	kprint(buf, color);
+}
 void kbackline (void)
 {
         video_ram += line_count*2+1;

@@ -10,9 +10,4 @@ void user_test(void)
 	char buf[0x40];
 	read(buf, 8);
 	asm("jmp $");
-	asm volatile("mov ebx, %[buf]" :: [buf]"r"(buf));
-        asm volatile("mov ecx, 8");
-	asm volatile("xor eax, eax");
-	asm volatile("int 0x30");
-	asm("jmp $");
 }

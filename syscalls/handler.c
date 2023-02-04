@@ -1,18 +1,14 @@
 void sys_read(char* buf, int n)
 {
 	int i = 0;
-	asm("jmp $");
-	// Will be removed:
 	unsigned char r = read_keyboard();
-	while (r != 0x1C && i < n)
+
+	for (i = 0; i < n; i++)
 	{
-		if (r)
-		{
-			buf[i] = k2ascii(r,0);
-			kprint(&buf[i],13);
-			r = read_keyboard();
-			i++;
-		}
+		if (r == 0x1C) break;
+		buf[i] = k2ascii(r,0);
+		putchar(buf[i], 13);
+		r = read_keyboard();
 	}
 	buf[i]=0;
 }
