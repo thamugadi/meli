@@ -3,6 +3,7 @@
 todo:
 
 - memory allocation
+- ELF loader
 - scheduling
 
 Memory is divided as following:
