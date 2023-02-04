@@ -3,7 +3,7 @@
 todo:
 
 - memory allocation
-- syscalls
+- scheduling
 
 Memory is divided as following:
 
