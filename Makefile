@@ -73,3 +73,7 @@ gdb:
 	$(QEMU) -s -S $(KERNEL)
 all:
 	make clean && make && make run
+mel.iso : mel.elf
+	cp mel.elf iso/boot/mel.elf
+	grub-mkrescue -o mel.iso iso
+	rm iso/boot/mel.elf
