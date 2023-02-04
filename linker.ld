@@ -17,6 +17,8 @@ SECTIONS
         {
                 *(.bss)
         }
+
+	/* This is temporary:*/
         . = 0x10000000;
 	
         .ring3data BLOCK(4K) : ALIGN(4K)

@@ -19,9 +19,11 @@ void main()
 
 	init_memory(0, 0x00,  0x00000000, 0x10000, KERNEL); 
 	
+	//To be replaced by an ELF loader:
 	init_memory(0, DATA,  0x10000000, 1, USER);
         init_memory(0, CODE,  0x20000000, 1, USER);
         init_memory(0, STACK, 0x28000000, 1, USER);
+
 	change_directory(0);
 
 	enable_32bit_paging();
