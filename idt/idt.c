@@ -12,8 +12,8 @@ extern void end_interrupt(int n);
 	asm volatile ("pushad"); \
 	irq_handler(n); \
 	end_interrupt(n); \
-	asm volatile("add esp, 12"); \
 	asm volatile("popad"); \
+	asm volatile("add esp, 0xc"); \
 	asm volatile("sti"); \
 	asm volatile("iret");
 struct IDT

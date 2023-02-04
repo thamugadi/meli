@@ -3,7 +3,7 @@ QEMU=qemu-system-i386 -m $(RAM)
 KERNEL=-kernel mel.elf
 CCFLAGS= -c -w -m32 -fno-stack-protector -fno-pie -masm=intel
 
-OBJS = main.o init.elf boot.elf kprint.o kmisc.o paging.o idt.o gdt.o keyboard.o azerty.o gdt.elf idt.elf irq.o pic.elf exceptions.o handler.o handler.elf ring3.elf keyboard.elf paging.elf 
+OBJS = main.o init.elf sc.elf boot.elf kprint.o kmisc.o paging.o idt.o gdt.o keyboard.o azerty.o gdt.elf idt.elf irq.o pic.elf exceptions.o handler.o handler.elf ring3.elf keyboard.elf paging.elf 
 
 mel.elf : $(OBJS) linker.ld
 	ld -z noexecstack -m elf_i386 -T linker.ld $(OBJS) -o mel.elf
@@ -56,7 +56,8 @@ boot.elf : boot/boot.s
 	as --32 boot/boot.s -o boot.elf
 init.elf : init.c
 	gcc $(CCFLAGS) -O0 init.c -o init.elf
-
+sc.elf : lib/user/sc.s
+	as --32 lib/user/sc.s -o sc.elf
 clean: 
 	rm *.o *.elf 
 run:

@@ -8,6 +8,7 @@ void user_test(void)
 {
 	test_data=1;
 	char buf[0x40];
+	read(buf, 8);
 	asm("jmp $");
 	asm volatile("mov ebx, %[buf]" :: [buf]"r"(buf));
         asm volatile("mov ecx, 8");
