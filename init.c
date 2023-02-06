@@ -9,6 +9,11 @@ void user_test(void)
 {
 	test_data=1;
 	char buf[0x40];
-	read(buf, 8);
+	buf[0] = 'A';
+	buf[1] = 'B';
+	buf[2] = 'C';
+	buf[3] = '\n';
+	buf[4] = 0;
+	write(&buf, 4);
 	asm("jmp $");
 }
