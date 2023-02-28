@@ -17,7 +17,6 @@ OBJ_S = $(patsubst $(filter-out boot/boot.s, %.s), bin/%_s.elf, $(SRC_S))
 OBJS = $(OBJ_BOOT) $(OBJ_C) $(OBJ_S)
 
 mel.elf : dirs $(OBJS)
-	@echo "aaaaaa"
 	@ld $(LDFLAGS) $(OBJS) -o mel.elf
 
 $(OBJ_BOOT) : $(SRC_BOOT)
