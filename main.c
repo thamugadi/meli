@@ -25,7 +25,6 @@ void main()
         init_memory(0, STACK, 0x28000000, 1, USER);
 
 	change_directory(0);
-
 	enable_32bit_paging();
 
 	init_idt();

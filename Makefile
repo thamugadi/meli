@@ -1,65 +1,39 @@
 RAM=1G
 QEMU=qemu-system-i386 -m $(RAM)
 KERNEL=-kernel mel.elf
-CCFLAGS= -c -w -m32 -fno-stack-protector -fno-pie -masm=intel
+CCFLAGS= -c -w -m32 -fno-stack-protector -fno-pie -masm=intel -O0
+LINKER=linker.ld
+LDFLAGS= -z noexecstack -m elf_i386 -T $(LINKER)
+ASFLAGS= --32
 
-OBJS = main.o init.elf sc.elf boot.elf kprint.o kmisc.o paging.o idt.o gdt.o keyboard.o azerty.o gdt.elf idt.elf irq.o pic.elf exceptions.o handler.o handler.elf ring3.elf keyboard.elf paging.elf 
+SRC_BOOT = boot/boot.s
+SRC_C = $(shell find -name "*.c")
+SRC_S = $(shell find -name "*.s" -not -name "boot.s")
 
-mel.elf : $(OBJS) linker.ld
-	ld -z noexecstack -m elf_i386 -T linker.ld $(OBJS) -o mel.elf
+OBJ_BOOT = bin/boot.elf
+OBJ_C = $(patsubst %.c, bin/%.elf, $(SRC_C))
+OBJ_S = $(patsubst $(filter-out boot/boot.s, %.s), bin/%_s.elf, $(SRC_S))
 
-%.o : %.c
-	gcc $(CCFLAGS) -O0 $<
+OBJS = $(OBJ_BOOT) $(OBJ_C) $(OBJ_S)
 
-%.o : lib/kernel/%.c
-	gcc $(CCFLAGS) -O0 $<
+mel.elf : dirs $(OBJS)
+	@echo "aaaaaa"
+	@ld $(LDFLAGS) $(OBJS) -o mel.elf
 
-gdt.elf : gdt/gdt.s
-	as --32 gdt/gdt.s -o gdt.elf
-gdt.o : gdt/gdt.c gdt/gdt.h gdt/tss.h
-	gcc $(CCFLAGS) -O0 $< 
+$(OBJ_BOOT) : $(SRC_BOOT)
+	@as --32 $(SRC_BOOT) -o $(OBJ_BOOT)
 
-idt.o : idt/idt.c
-	gcc $(CCFLAGS) -O0 idt/idt.c
-idt.elf: idt/idt.s
-	as --32 idt/idt.s -o idt.elf
-irq.o : interrupts/irq/irq.c
-	gcc $(CCFLAGS) -O0 interrupts/irq/irq.c
-exceptions.o : interrupts/exceptions/exceptions.c
-	gcc $(CCFLAGS) -O0 interrupts/exceptions/exceptions.c
+dirs :
+	@mkdir -p $(dir $(OBJS))
 
-%.o : syscalls/%.c
-	gcc $(CCFLAGS) -O0 $<
-handler.elf : syscalls/handler.s
-	as --32 $< -o handler.elf
+bin/%.elf: %.c
+	@gcc $(CCFLAGS) $< -o $@
 
-
-pic.elf : 8259_PIC/pic.s
-	as --32 8259_PIC/pic.s -o pic.elf
-
-%.o : keyboard/%.c
-	gcc $(CCFLAGS) -O0 $<
-keyboard.elf : keyboard/keyboard.s
-	as --32 keyboard/keyboard.s -o keyboard.elf
-
-paging.o : paging/paging.c
-	gcc $(CCFLAGS) -O0 paging/paging.c
-paging.elf : paging/paging.s
-	as --32 paging/paging.s -o paging.elf
-
-%.o : usermode/%.c
-	gcc $(CCFLAGS) -O0 $<
-ring3.elf : usermode/ring3.s
-	as --32 usermode/ring3.s -o ring3.elf
-
-boot.elf : boot/boot.s
-	as --32 boot/boot.s -o boot.elf
-init.elf : init.c
-	gcc $(CCFLAGS) -O0 init.c -o init.elf
-sc.elf : lib/user/sc.s
-	as --32 lib/user/sc.s -o sc.elf
+bin/%_s.elf : %.s
+	@as $(ASFLAGS) $< -o $@
 clean: 
-	rm *.o *.elf 
+	@rm -rf bin 
+	@rm *.elf
 run:
 	$(QEMU) $(KERNEL)
 kvm:
