@@ -16,7 +16,7 @@ OBJ_S = $(SRC_S:%.s=bin/%_s.elf)
 
 OBJS = $(OBJ_BOOT) $(OBJ_C) $(OBJ_S)
 
-mel.elf : dirs $(OBJS)
+mel.elf : dirs $(OBJS) $(LINKER)
 	@ld $(LDFLAGS) $(OBJS) -o mel.elf
 
 $(OBJ_BOOT) : $(SRC_BOOT)
