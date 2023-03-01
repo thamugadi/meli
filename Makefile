@@ -11,8 +11,8 @@ SRC_C = $(shell find -name "*.c")
 SRC_S = $(shell find -name "*.s" -not -name "boot.s")
 
 OBJ_BOOT = bin/boot.elf
-OBJ_C = $(patsubst %.c, bin/%.elf, $(SRC_C))
-OBJ_S = $(patsubst $(filter-out boot/boot.s, %.s), bin/%_s.elf, $(SRC_S))
+OBJ_C = $(SRC_C:%.c=bin/%.elf)
+OBJ_S = $(SRC_S:%.s=bin/%_s.elf)
 
 OBJS = $(OBJ_BOOT) $(OBJ_C) $(OBJ_S)
 
