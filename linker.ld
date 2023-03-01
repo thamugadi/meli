@@ -15,7 +15,10 @@ SECTIONS
         }
         .bss BLOCK(4K) (NOLOAD) : ALIGN(4K)
         {
-		*(.paging)
+		page_directories = .;
+		. += 0x4000;
+		page_tables = .;
+		. += 0x1000000;
                 *(.bss)
         }
 

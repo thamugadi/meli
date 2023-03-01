@@ -1,8 +1,8 @@
 extern void set_32bit_cr3(unsigned int cr3_phdr); 
 extern void enable_32bit_paging();
 
-unsigned int __attribute__((section(".paging"))) page_directories[0x10][0x400]; 
-unsigned int __attribute__((section(".paging"))) page_tables[0x10][0x400][0x400];
+extern unsigned int page_directories[0x10][0x400]; 
+extern unsigned int page_tables[0x10][0x400][0x400];
 
 // 1 block = 4MiB
 // 1 page  = 4KiB
