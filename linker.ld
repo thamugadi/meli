@@ -13,7 +13,7 @@ SECTIONS
         {
                 *(.data)
         }
-        .bss BLOCK(4K) : ALIGN(4K)
+        .bss BLOCK(4K) (NOLOAD) : ALIGN(4K)
         {
 		*(.paging)
                 *(.bss)
