@@ -45,8 +45,6 @@ int:
 	$(QEMU) $(KERNEL) -d int
 gdb:
 	$(QEMU) -s -S $(KERNEL)
-all:
-	make clean && make && make run
 mel.iso : mel.elf
 	cp mel.elf iso/boot/mel.elf
 	strip iso/boot/mel.elf
