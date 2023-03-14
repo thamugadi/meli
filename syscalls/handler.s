@@ -2,8 +2,8 @@
 
 .globl syscall_handler
 
-.extern sys_read
-.extern sys_write
+.extern sys_kbd_read
+.extern sys_scr_write
 
 syscall_handler:
 pushad
@@ -17,12 +17,12 @@ jmp $
 tr_read:
 push ecx
 push ebx
-call sys_read
+call sys_kbd_read
 jmp end
 tr_write:
 push ecx
 push ebx
-call sys_write
+call sys_scr_write
 jmp end
 end:
 add esp, 0x8

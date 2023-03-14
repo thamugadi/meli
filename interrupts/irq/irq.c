@@ -1,4 +1,5 @@
 unsigned char current_key;
+
 void irq_handler(int irq)
 {
 	asm volatile("push eax");
@@ -12,9 +13,9 @@ void irq_handler(int irq)
 	itoa(irq, buf);
 	if (irq)
 	{
-		kprint("IRQ ", 14);
-		kprint(buf, 14);
-		kprint("\n", 14);
+//		kprint("IRQ ", 14);
+//		kprint(buf, 14);
+//		kprint("\n", 14);
 	}
 
 	if (irq == 1)
