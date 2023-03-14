@@ -6,6 +6,7 @@
 .extern sys_scr_write
 
 syscall_handler:
+push ebp
 pushad
 cli
 ###eax
@@ -27,5 +28,6 @@ jmp end
 end:
 add esp, 0x8
 popad
+pop ebp
 sti
 iret

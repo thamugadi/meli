@@ -9,11 +9,13 @@ extern void end_interrupt(int n);
 
 #define HANDLE(n) \
 	asm volatile("cli"); \
+	asm volatile("push ebp"); \
 	asm volatile ("pushad"); \
 	irq_handler(n); \
 	end_interrupt(n); \
 	asm volatile("popad"); \
 	asm volatile("add esp, 0xc"); \
+	asm volatile("pop ebp"); \
 	asm volatile("sti"); \
 	asm volatile("iret");
 struct IDT
