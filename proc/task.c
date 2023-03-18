@@ -20,7 +20,17 @@ process_context contexts[16];
 
 void context_switch(unsigned int eip, unsigned int eflags, unsigned int eax, unsigned int ebx, unsigned int ecx, unsigned int edx, unsigned int esp, unsigned int ebp, unsigned int esi, unsigned int edi)
 {
-	contexts[current_pid].eip = 
+	contexts[current_pid].eip = eip;
+        contexts[current_pid].eflags = eflags;
+        contexts[current_pid].eip = eax;
+        contexts[current_pid].eip = ebx;
+        contexts[current_pid].eip = ecx;
+        contexts[current_pid].eip = edx;
+        contexts[current_pid].eip = esp;
+        contexts[current_pid].eip = ebp;
+        contexts[current_pid].eip = esi;
+        contexts[current_pid].eip = edi;
+
 	if (processes_n == 1) return;
 	
 	do
@@ -30,5 +40,5 @@ void context_switch(unsigned int eip, unsigned int eflags, unsigned int eax, uns
 
 
         change_directory(current_pid);
-	// TO BE DONE: saving registers
+	// TO BE DONE: loading registers
 }
