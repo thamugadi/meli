@@ -14,7 +14,9 @@ typedef struct process_context
 	unsigned int ebp;
 	unsigned int esi;
 	unsigned int edi;
-} process_context[16];
+} process_context;
+
+process_context contexts[16];
 
 void context_switch()
 {
