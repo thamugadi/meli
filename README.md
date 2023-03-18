@@ -3,7 +3,6 @@
 todo:
 
 - disk & filesystem
-- memory allocation
 - ELF loader
 - scheduling
 
