@@ -11,6 +11,7 @@ SECTIONS
 	. = 0x00200000;
         .data BLOCK(4K) : ALIGN(4K)
         {
+		*(.rodata)
                 *(.data)
         }
         .bss BLOCK(4K) (NOLOAD) : ALIGN(4K)
@@ -30,11 +31,9 @@ SECTIONS
                 *(.ring3data)
 		*(.ring3bss)
         }
-	. = 0x20000000;
+	. = 0x10004000;
 	.ring3text BLOCK(4K) : ALIGN(4K)
 	{
 		*(.ring3text)
 	}
-
-
 }
