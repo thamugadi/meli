@@ -31,7 +31,7 @@ SECTIONS
                 *(.ring3data)
 		*(.ring3bss)
         }
-	. = 0x10004000;
+	. = 0x10001000;
 	.ring3text BLOCK(4K) : ALIGN(4K)
 	{
 		*(.ring3text)
