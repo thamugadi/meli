@@ -1,3 +1,5 @@
+int current_pid = 0;
+
 extern void user_test(void) __attribute__((section(".ring3")));
 #define DATA  0x40
 #define CODE  0x80
@@ -7,6 +9,7 @@ extern void user_test(void) __attribute__((section(".ring3")));
 #define USER   7 
 void main()
 {
+
         free_vram();
         knextpage();
 
@@ -26,7 +29,8 @@ void main()
         init_memory(0, STACK, 0x28000000, 1, USER);
 	change_directory(0);
 	enable_32bit_paging();
-	set_usermode(&user_test); // run our first usermode program.
+
+	set_usermode(&user_test, 0x28000000); // run our first usermode program.
 	
 	while(1);
 }

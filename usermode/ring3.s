@@ -9,7 +9,8 @@ mov es, ax
 mov fs, ax 
 mov gs, ax 
 
-mov eax, USERSTACK
+mov eax, dword ptr [esp+0x8] 
+add eax, 0x400
 push 0b00100011
 push eax 
 pushf
