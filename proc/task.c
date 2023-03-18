@@ -18,8 +18,9 @@ typedef struct process_context
 
 process_context contexts[16];
 
-void context_switch()
+void context_switch(unsigned int eip, unsigned int eflags, unsigned int eax, unsigned int ebx, unsigned int ecx, unsigned int edx, unsigned int esp, unsigned int ebp, unsigned int esi, unsigned int edi)
 {
+	contexts[current_pid].eip = 
 	if (processes_n == 1) return;
 	
 	do
