@@ -22,14 +22,14 @@ void context_switch(unsigned int eip, unsigned int eflags, unsigned int eax, uns
 {
 	contexts[current_pid].eip = eip;
         contexts[current_pid].eflags = eflags;
-        contexts[current_pid].eip = eax;
-        contexts[current_pid].eip = ebx;
-        contexts[current_pid].eip = ecx;
-        contexts[current_pid].eip = edx;
-        contexts[current_pid].eip = esp;
-        contexts[current_pid].eip = ebp;
-        contexts[current_pid].eip = esi;
-        contexts[current_pid].eip = edi;
+        contexts[current_pid].eax = eax;
+        contexts[current_pid].ebx = ebx;
+        contexts[current_pid].ecx = ecx;
+        contexts[current_pid].edx = edx;
+        contexts[current_pid].esp = esp;
+        contexts[current_pid].ebp = ebp;
+        contexts[current_pid].esi = esi;
+        contexts[current_pid].edi = edi;
 
 	if (processes_n == 1) return;
 	
