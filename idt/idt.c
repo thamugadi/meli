@@ -1,5 +1,5 @@
 extern void end_interrupt(int n);
-unsigned int* context_save;
+unsigned int** __attribute__((section(".data"))) context_save;
 #define FILL_IDT_ENTRY(n, base, ss1, type1) \
                 idt[n].base_0_15 = base & 0xffff; \
                 idt[n].ss = ss1; \
@@ -10,8 +10,8 @@ unsigned int* context_save;
 #define HANDLE(n) \
 	asm volatile("cli"); \
 	asm volatile("push ebp"); \
-	asm volatile ("mov %0, esp" : "=r" (context_save)); \
 	asm volatile ("pushad"); \
+	asm volatile ("mov %0, esp" : "=r" (context_save)); \
 	irq_handler(n); \
 	end_interrupt(n); \
 	asm volatile("popad"); \

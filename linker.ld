@@ -11,6 +11,7 @@ SECTIONS
 	. = 0x00200000;
         .data BLOCK(4K) : ALIGN(4K)
         {
+
 		*(.rodata)
                 *(.data)
         }
@@ -21,6 +22,7 @@ SECTIONS
 		page_tables = .;
 		. += 0x1000000;
                 *(.bss)
+
         }
 
 	/* This is temporary:*/
