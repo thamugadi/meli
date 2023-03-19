@@ -32,7 +32,7 @@ void main()
         init_memory(0, CODE, 0x10001000, 1, USER);
         init_memory(0, STACK,0x10002000, 1, USER);
 
-	set_usermode(0x20000000, 0x28000000); // run our first usermode program.
+	set_usermode(0x20000000, 0x28000000, 0x400); // run our first usermode program.
 	
 	while(1);
 }

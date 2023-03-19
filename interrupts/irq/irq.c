@@ -11,6 +11,13 @@ void irq_handler(int irq)
 	asm volatile("pop eax");
 	char buf[4];
 	itoa(irq, buf);
+
+	if (!irq)
+	{
+//		asm("push esp");
+//		context_switch();
+	}
+
 	if (irq)
 	{
 //		kprint("IRQ ", 14);
