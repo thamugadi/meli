@@ -1,5 +1,7 @@
 unsigned char current_key;
 
+unsigned int* ptr;
+
 void irq_handler(int irq)
 {
 	asm volatile("push eax");
@@ -14,8 +16,8 @@ void irq_handler(int irq)
 
 	if (!irq)
 	{
-//		asm("push esp");
-//		context_switch();
+		asm volatile ("mov %0, esp" : "=r" (ptr));
+		context_switch(ptr);
 	}
 
 	if (irq)

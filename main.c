@@ -7,6 +7,7 @@ extern void user_test(void) __attribute__((section(".ring3text")));
 
 #define KERNEL 3
 #define USER   7 
+extern char processes[16];
 void main()
 {
 
@@ -31,6 +32,7 @@ void main()
 	init_memory(0, DATA, 0x10000000, 1, USER);
         init_memory(0, CODE, 0x10001000, 1, USER);
         init_memory(0, STACK,0x10002000, 1, USER);
+	processes[0] = 1;
 
 	set_usermode(0x20000000, 0x28000000, 0x400); // run our first usermode program.
 	
