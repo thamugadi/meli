@@ -22,6 +22,7 @@ process_context __attribute__((section(".data"))) contexts[16];
 
 void context_switch()
 {
+	//if (!(processes_n)) return;
 	contexts[current_pid].eip = *(unsigned int*)(0x007fffbc + 0x30);
         contexts[current_pid].eflags = *(unsigned int*)(0x007fffbc + 0x38);
         contexts[current_pid].cs = *(unsigned int*)(0x007fffbc + 0x34);
