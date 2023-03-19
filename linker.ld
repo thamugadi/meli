@@ -22,7 +22,6 @@ SECTIONS
 		page_tables = .;
 		. += 0x1000000;
                 *(.bss)
-
         }
 
 	/* This is temporary:*/

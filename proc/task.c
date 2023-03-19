@@ -2,7 +2,6 @@
 char __attribute__((section(".data"))) processes[16]; 
 char processes_n = 1;
 extern int current_pid;
-extern unsigned int** context_save;
 typedef struct process_context
 {
 	unsigned int eip;
