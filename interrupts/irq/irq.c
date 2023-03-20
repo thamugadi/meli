@@ -1,5 +1,4 @@
 unsigned char current_key;
-
 void irq_handler(int irq)
 {
 	asm volatile("push eax");

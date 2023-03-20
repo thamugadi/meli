@@ -1,4 +1,5 @@
 int current_pid = 0;
+extern char scheduling;
 extern void user_test(void) __attribute__((section(".ring3text")));
 #define DATA  0x40
 #define CODE  0x80
@@ -28,7 +29,9 @@ void main()
 	enable_32bit_paging();
 
 	new_process(0x10000000, 0x10001000, 0x10002000, 1, 1, 1);
-	set_usermode(0x20000000, 0x28000000, 0x400); // run our first usermode program.
+        new_process(0x10010000, 0x10011000, 0x10012000, 1, 1, 1);
+
+	set_usermode(0x20000000, 0x28000000, 0x1000); // run our first usermode program.
 	
 	while(1);
 }
