@@ -1,5 +1,4 @@
 int current_pid = 0;
-
 extern void user_test(void) __attribute__((section(".ring3text")));
 #define DATA  0x40
 #define CODE  0x80
@@ -10,7 +9,6 @@ extern void user_test(void) __attribute__((section(".ring3text")));
 extern char processes[16];
 void main()
 {
-
         free_vram();
         knextpage();
 

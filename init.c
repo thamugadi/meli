@@ -19,8 +19,12 @@ void func(void)
 {
         char buffer[0x10];
 	brk_user(3);
-        kbd_read(buffer, 12);
+
+	scr_write("Hello from PID 0.\n",18);
+
+        /*kbd_read(buffer, 12);
         scr_write("\nYou wrote:\n", 12);
         scr_write(buffer, 12);
+	*/
 	asm("jmp $");
 }

@@ -21,6 +21,7 @@ int new_process(unsigned int data, unsigned int code, unsigned int stack,
 		}
 	}
 
+        init_memory(0, 0x00, 0x00000000, 0x10000, 3);
 
         init_memory(pid, DATA, data, sdata,  7);
         init_memory(pid, CODE, code, scode,  7);
