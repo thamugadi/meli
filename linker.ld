@@ -37,18 +37,4 @@ SECTIONS
 	{
 		*(.ring3text)
 	}
-	
-        . = 0x10010000;
-
-        .ring3data_ BLOCK(4K) : ALIGN(4K)
-        {
-                *(.ring3data_)
-                *(.ring3bss_)
-        }
-        . = 0x10011000;
-        .ring3text_ BLOCK(4K) : ALIGN(4K)
-        {
-                *(.ring3text_)
-        }
-
 }
