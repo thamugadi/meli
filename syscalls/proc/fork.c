@@ -1,4 +1,4 @@
-void fork(unsigned int eip)
+void fork()
 {
 
 }
