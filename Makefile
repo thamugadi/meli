@@ -1,7 +1,7 @@
 RAM=1G
 QEMU=qemu-system-i386 -m $(RAM)
 KERNEL=-kernel mel.elf
-CCFLAGS= -g -c -w -m32 -fno-stack-protector -fno-pie -masm=intel -O0
+CCFLAGS= -g -c -w -m32 -fno-stack-protector -fno-pie -masm=intel -O4
 LINKER=linker.ld
 LDFLAGS= -z noexecstack -m elf_i386 -T $(LINKER)
 ASFLAGS= --32
