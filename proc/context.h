@@ -11,5 +11,9 @@ struct process_context
         unsigned int ebp;
         unsigned int esi;
         unsigned int edi;
+
+	unsigned int paddr_data;
+	unsigned int paddr_code;
+        unsigned int paddr_stack;
 } __attribute__((packed));
 

@@ -35,6 +35,6 @@ int 0x30
 ret
 fork_user:
 mov eax, 5
-mov ebx, dword ptr [esp+0x4]
+mov ebx, dword ptr [esp]
 int 0x30
 ret

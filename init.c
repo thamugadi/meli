@@ -6,7 +6,6 @@ void u_reverse(char* addr) __attribute__((section(".ring3text")));
 void u_itoa(int i, char* addr) __attribute__((section(".ring3text")));
 
 
-
 void user_test(void)
 {
 	asm("mov ebp, esp");
@@ -23,6 +22,8 @@ void func(void)
 	scr_write("Hello from PID ",15);
 	scr_write(buffer, 1);
 	scr_write("\n", 1);
+
+	fork_user();
 	asm("jmp $");
 }
 
