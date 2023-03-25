@@ -1,12 +1,15 @@
 # mel
 32-bit hobby kernel.
-todo:
 
-- disk & filesystem
-- ELF loader
-- scheduling
+![Screenshot](https://imgur.com/fRMQ87i)
 
-Memory is divided as following:
+It aims to implement the basic features of a kernel: paging, usermode, basic syscalls, scheduling.
+
+
+For the moment there is little interaction that is possible. I will try to implement a shell when the rest is a bit more developed.
+
+
+The memory is subdivided in this way for programs loaded in user mode:
 
 
 |Memory region  | Address
