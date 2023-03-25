@@ -1,7 +1,7 @@
 # mel
 32-bit hobby kernel.
 
-![Screenshot](https://imgur.com/fRMQ87i)
+![Screenshot](https://i.imgur.com/fRMQ87i.png)
 
 It aims to implement the basic features of a kernel: paging, usermode, basic syscalls, scheduling.
 
