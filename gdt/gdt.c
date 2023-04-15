@@ -1,5 +1,5 @@
-#include "gdt.h"
-#include "tss.h"
+#include <gdt.h>
+#include <tss.h>
 #define KERNELSTACK 0x00800000
 #define FILL_GDT_ENTRY(n, l015, b015, b1623, ac, gr, b2431) \
                 gdt[n].limit_0_15 = l015; \
