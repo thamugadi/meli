@@ -23,7 +23,8 @@ void func(void)
 	scr_write(buffer, 1);
 	scr_write("\n", 1);
 
-	fork_user();
+	kbd_read(buffer, 4);
+//	fork_user();
 	asm("jmp $");
 }
 

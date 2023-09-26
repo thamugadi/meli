@@ -1,9 +1,27 @@
 void sys_kbd_read(char* buf, int n)
 {
-	for (int i = 0; i < n;)
+	unsigned char k = 0xff;
+	for (int i = 0; i < n; i++)
 	{
-		unsigned char k = k2ascii(read_keyboard(), 0);
-		buf[i++] = k;
+		unsigned char read;
+        	do 
+        	{
+                	read = input(0x64);
+        	} 
+        	while (!(read & 1));
+        	do
+		{
+			read = input(0x60);
+		}
+		while((read & 0x80));
+
+		if (read == 0x36 || read == 0x1C)
+		{
+			break;
+		}
+
+		k = k2ascii(read, 0);
+		buf[i] = k;
 		putchar(k, 13);
 	}
 }

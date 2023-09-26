@@ -3,10 +3,13 @@ int ktype = 0;
 unsigned char read_keyboard()
 {
         unsigned char read;
-        do {
+        do 
+	{
                 read = input(0x64);
-        } while (!(read & 1));
-        read = input(0x60); 
+        } 
+	while (!(read & 1));
+
+	read = input(0x60);
 
 	if (read == 0x36) return 0x1C;
 
