@@ -4,12 +4,15 @@ unsigned char read_keyboard()
 {
         unsigned char read;
         do 
-	{
+        {
                 read = input(0x64);
         } 
-	while (!(read & 1));
-
-	read = input(0x60);
+        while (!(read & 1));
+        do
+        {
+                read = input(0x60);
+        }
+        while((read & 0x80));
 
 	if (read == 0x36) return 0x1C;
 
