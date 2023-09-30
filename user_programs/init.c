@@ -22,9 +22,9 @@ void func(void)
 	scr_write("Hello from PID ",15);
 	scr_write(buffer, 1);
 	scr_write("\n", 1);
-
 	kbd_read(buffer, 4);
-//	fork_user();
+	scr_write("\n", 1);
+	scr_write("Copied 4 bytes of input into a buffer", 43);
 	asm("jmp $");
 }
 
@@ -55,4 +55,22 @@ void u_itoa(int i, char* addr)
         u_reverse(addr);
 }
 
+
+
+int u_strcmp(char *str1, char *str2, int len)
+{
+	int n = 1;
+	int count = 0;
+
+	while (count < len)
+	{
+		if (str1[count] != str2[count])
+		{
+			n = 0;
+		}
+
+		count++;
+	}
+	return n;
+}
 

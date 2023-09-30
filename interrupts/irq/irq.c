@@ -25,7 +25,6 @@ void irq_handler(int irq)
 
 	if (irq == 1)
 	{
-		current_key = read_keyboard();
 	}
 	asm volatile("push eax");
 	asm volatile("mov ax, 0x23");

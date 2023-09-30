@@ -1,6 +1,6 @@
 int ktype = 0;
 
-unsigned char read_keyboard()
+unsigned char read_keyboard(int last)
 {
         unsigned char read;
         do 
@@ -8,14 +8,10 @@ unsigned char read_keyboard()
                 read = input(0x64);
         } 
         while (!(read & 1));
-        do
-        {
-                read = input(0x60);
-        }
-        while((read & 0x80));
-
-	if (read == 0x36) return 0x1C;
-
+	do 
+	{
+		read = input(0x60);
+	} while(read&0x80);
         return read;
 }
 
