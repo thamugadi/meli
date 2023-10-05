@@ -23,12 +23,11 @@ int new_process(unsigned int data, unsigned int code, unsigned int stack,
 			break;
 		}
 	}
+	init_memory(pid, 0x00, 0x00000000, 0x10000, 3);
 
-        init_memory(pid, 0x00, 0x00000000, 0x10000, 3);
-
-        init_memory(pid, DATA, data, sdata,  7);
-        init_memory(pid, CODE, code, scode,  7);
-        init_memory(pid, STACK,stack,sstack, 7);
+	init_memory(pid, DATA, data, sdata,  7);
+	init_memory(pid, CODE, code, scode,  7);
+	init_memory(pid, STACK,stack,sstack, 7);
 
 	contexts[pid].cs = 0x1b; 
 	contexts[pid].eflags = 0x200;

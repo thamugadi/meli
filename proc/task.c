@@ -10,16 +10,16 @@ void context_switch()
 {
 	//if (!(processes_n)) return;
 	contexts[current_pid].eip = REG(0x30);
-        contexts[current_pid].eflags = REG(0x38);
-        contexts[current_pid].cs = REG(0x34);
-        contexts[current_pid].eax = REG(0x1c);
-        contexts[current_pid].ebx = REG(0x10); 
-        contexts[current_pid].ecx = REG(0x18); 
-        contexts[current_pid].edx = REG(0x14); 
-        contexts[current_pid].edi = REG(0x00); 
-        contexts[current_pid].esi = REG(0x04); 
-        contexts[current_pid].ebp = REG(0x2c); 
-        contexts[current_pid].esp = REG(0x3c);
+	contexts[current_pid].eflags = REG(0x38);
+	contexts[current_pid].cs = REG(0x34);
+	contexts[current_pid].eax = REG(0x1c);
+	contexts[current_pid].ebx = REG(0x10); 
+	contexts[current_pid].ecx = REG(0x18); 
+	contexts[current_pid].edx = REG(0x14); 
+	contexts[current_pid].edi = REG(0x00); 
+	contexts[current_pid].esi = REG(0x04); 
+	contexts[current_pid].ebp = REG(0x2c); 
+	contexts[current_pid].esp = REG(0x3c);
 
 	do
 	{
@@ -30,13 +30,13 @@ void context_switch()
 
 	REG(0x30) = contexts[current_pid].eip;
 	REG(0x38) = contexts[current_pid].eflags; 
-        REG(0x34) = contexts[current_pid].cs; 
-        REG(0x1C) = contexts[current_pid].eax; 
-        REG(0x10) = contexts[current_pid].ebx; 
-        REG(0x18) = contexts[current_pid].ecx; 
-        REG(0x14) = contexts[current_pid].edx; 
-        REG(0x00) = contexts[current_pid].edi; 
-        REG(0x04) = contexts[current_pid].esi; 
-        REG(0x2C) = contexts[current_pid].ebp; 
-        REG(0x3C) = contexts[current_pid].esp; 
+	REG(0x34) = contexts[current_pid].cs; 
+	REG(0x1C) = contexts[current_pid].eax; 
+	REG(0x10) = contexts[current_pid].ebx; 
+	REG(0x18) = contexts[current_pid].ecx; 
+	REG(0x14) = contexts[current_pid].edx; 
+	REG(0x00) = contexts[current_pid].edi; 
+	REG(0x04) = contexts[current_pid].esi; 
+	REG(0x2C) = contexts[current_pid].ebp; 
+	REG(0x3C) = contexts[current_pid].esp; 
 }
